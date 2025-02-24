@@ -7,7 +7,7 @@ function Topbar() {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <img src="src/assets/logo.png" alt="logo" style={{ height: "40px" }} />
-        <Form inline>
+        <Form className="d-flex">
           <Row>
             <Col xs="auto">
               <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
@@ -23,9 +23,7 @@ function Topbar() {
             <Nav.Link as={Link} to="/">
               <HouseDoorFill className="fs-3" /> Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/profile">
-              <PeopleFill className="fs-3" /> Profilo
-            </Nav.Link>
+
             <Nav.Link href="#lavoro">
               <BriefcaseFill className="fs-3" /> Lavoro
             </Nav.Link>
@@ -37,7 +35,9 @@ function Topbar() {
             </Nav.Link>
             <NavDropdown title="Profilo" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/profile">
-                Il mio Profilo
+                <Nav.Link as={Link} to="/profile">
+                  <PeopleFill className="fs-3" /> Profilo
+                </Nav.Link>
               </NavDropdown.Item>
               <NavDropdown.Item href="#">Impostazioni</NavDropdown.Item>
               <NavDropdown.Divider />
