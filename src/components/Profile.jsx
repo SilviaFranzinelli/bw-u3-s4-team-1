@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../redux/actions";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { Pencil } from "react-bootstrap-icons";
+import MultiProfiles from "./MultiProfiles";
 
 function Profile() {
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.profile.content);
+  const profile = useSelector((state) => state.profile?.content);
+
+
 
   useEffect(() => {
     dispatch(getProfile()); // Fetch del profilo quando il componente viene montato
@@ -44,6 +47,7 @@ function Profile() {
           </Card>
         </Col>
         <Col></Col>
+        <MultiProfiles></MultiProfiles>
       </Row>
     </Container>
   );

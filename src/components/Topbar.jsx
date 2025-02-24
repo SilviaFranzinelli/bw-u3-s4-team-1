@@ -1,6 +1,6 @@
 import { Button, Col, Container, Form, Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { BellFill, BriefcaseFill, ChatDotsFill, HouseDoorFill, PeopleFill } from "react-bootstrap-icons";
+import { BellFill, BriefcaseFill, ChatDotsFill, HouseDoorFill,} from "react-bootstrap-icons";
 
 function Topbar() {
   return (
@@ -35,13 +35,13 @@ function Topbar() {
             </Nav.Link>
             <NavDropdown title="Profilo" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/profile">
-                <Nav.Link as={Link} to="/profile">
-                  <PeopleFill className="fs-3" /> Profilo
-                </Nav.Link>
+                Profilo
               </NavDropdown.Item>
-              <NavDropdown.Item href="#">Impostazioni</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/settings">
+                Impostazioni
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#">Logout</NavDropdown.Item>
+              <NavDropdown.Item >Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
