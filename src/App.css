@@ -1,3 +1,7 @@
-body { 
-    background-color: #F4F2EE !important;
+body {
+  background-color: #f4f2ee !important;
+}
+
+.profileImage {
+  width: 170px;
 }

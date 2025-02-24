@@ -27,15 +27,16 @@ function Profile() {
             />
             <div className="position-absolute" style={{ marginTop: "150px" }}>
               <img
+                className="profileImage"
                 src={profile.image}
                 alt=""
-                style={{ border: "solid 5px white", borderRadius: "50%", margin: "3rem" }}
+                style={{ border: "solid 5px white", borderRadius: "50%", margin: "1rem" }}
               />
             </div>
             <div className="position-absolute end-0 bg-white p-2 m-2" style={{ borderRadius: "60%" }}>
               <Pencil className="fs-5" />
             </div>
-            <Card.Body>
+            <Card.Body className="mt-4">
               <Card.Title>{`${profile.name} ${profile.surname}`}</Card.Title>
               <Card.Text>{profile.email}</Card.Text>
               <Card.Text>{profile.title}</Card.Text>
