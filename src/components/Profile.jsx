@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../redux/actions";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { Pencil } from "react-bootstrap-icons";
+import ModMyProfile from "./ModMyProfile";
 
 function Profile() {
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false); // Stato per mostrare il modal
   const profile = useSelector((state) => state.profile.content);
 
   useEffect(() => {
@@ -15,6 +17,14 @@ function Profile() {
   if (!profile) {
     return <p>Caricamento...</p>;
   }
+
+  const handleOpenModal = () => {
+    setShowModal(true); // Mostra il modal
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false); // Chiudi il modal
+  };
 
   return (
     <Container className="mt-4">
@@ -29,12 +39,12 @@ function Profile() {
               <img
                 className="profileImage"
                 src={profile.image}
-                alt=""
+                alt="profile"
                 style={{ border: "solid 5px white", borderRadius: "50%" }}
               />
             </div>
             <div className="position-absolute end-0 bg-white p-2 m-2" style={{ borderRadius: "60%" }}>
-              <Pencil className="fs-5" />
+              <Pencil onClick={handleOpenModal} className="fs-5 cursore" />
             </div>
             <Card.Body className="mt-4">
               <Card.Title>{`${profile.name} ${profile.surname}`}</Card.Title>
@@ -45,6 +55,8 @@ function Profile() {
         </Col>
         <Col></Col>
       </Row>
+
+      <ModMyProfile show={showModal} onClose={handleCloseModal} />
     </Container>
   );
 }
