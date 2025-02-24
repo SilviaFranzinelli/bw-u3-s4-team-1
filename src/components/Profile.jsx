@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../redux/actions";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { Pencil } from "react-bootstrap-icons";
+import MultiProfiles from "./MultiProfiles";
 import ModMyProfile from "./ModMyProfile";
 
 function Profile() {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false); // Stato per mostrare il modal
   const profile = useSelector((state) => state.profile.content);
+
 
   useEffect(() => {
     dispatch(getProfile()); // Fetch del profilo quando il componente viene montato
@@ -54,6 +56,7 @@ function Profile() {
           </Card>
         </Col>
         <Col></Col>
+        <MultiProfiles></MultiProfiles>
       </Row>
 
       <ModMyProfile show={showModal} onClose={handleCloseModal} />
