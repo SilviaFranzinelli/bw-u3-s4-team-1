@@ -30,7 +30,7 @@ function Profile() {
                 className="profileImage"
                 src={profile.image}
                 alt=""
-                style={{ border: "solid 5px white", borderRadius: "50%", margin: "1rem" }}
+                style={{ border: "solid 5px white", borderRadius: "50%" }}
               />
             </div>
             <div className="position-absolute end-0 bg-white p-2 m-2" style={{ borderRadius: "60%" }}>
