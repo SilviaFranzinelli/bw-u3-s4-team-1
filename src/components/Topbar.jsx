@@ -1,6 +1,6 @@
 import { Button, Col, Container, Form, Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { BellFill, BriefcaseFill, ChatDotsFill, HouseDoorFill,} from "react-bootstrap-icons";
+import { BellFill, BriefcaseFill, ChatDotsFill, HouseDoorFill } from "react-bootstrap-icons";
 
 function Topbar() {
   return (
@@ -41,7 +41,7 @@ function Topbar() {
                 Impostazioni
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item >Logout</NavDropdown.Item>
+              <NavDropdown.Item>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
