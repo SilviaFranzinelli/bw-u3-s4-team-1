@@ -1,15 +1,15 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import profileReducer from "../reducers/profile";
 
-// 📌 Reducer vuoto temporaneo per evitare errori
-const rootReducer = combineReducers({
-  placeholder: (state = {}) => state, // 🔴 Questo è un reducer temporaneo
-});
+const rootReducers = combineReducers({
+    profiles:profileReducer,
+})
 
 // 📌 Configurazione dello store Redux
 const store = configureStore({
-  reducer: rootReducer,
-});
+    reducer: rootReducers
+})
 
-console.log("🛠️ Redux Store Creato:", store.getState());
+console.log(store.getState());
 
 export default store;
