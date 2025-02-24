@@ -35,10 +35,9 @@ function Topbar() {
             </Nav.Link>
             <NavDropdown title="Profilo" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/profile">
-                <Nav.Link as={Link} to="/profile">
-                  <PeopleFill className="fs-3" /> Profilo
-                </Nav.Link>
+                <PeopleFill className="fs-3" /> Profilo
               </NavDropdown.Item>
+
               <NavDropdown.Item href="#">Impostazioni</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#">Logout</NavDropdown.Item>
