@@ -2,6 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { useEffect } from "react";
 import { myExperiences } from "../redux/actions/exprerience";
+import { Button } from "react-bootstrap";
+
+import { fetchDeleteExp } from "../redux/actions/deleteExp";
 
 const ExperienceList = () => {
   const experiences = useSelector((state) => state.experience.content || []); //prende le exp dall'array di oggetti content
@@ -19,6 +22,12 @@ const ExperienceList = () => {
   useEffect(() => {
     dispatch(myExperiences()); // Fetch delle esperienze al mount
   }, [dispatch]);
+
+  const handleDelete = (id) => {
+    /* console.log(id); */
+    dispatch(fetchDeleteExp(id));
+    dispatch(myExperiences());
+  };
 
   return (
     <div className="p-4">
@@ -43,6 +52,7 @@ const ExperienceList = () => {
                 <p className="text-sm">
                   <strong>Fine:</strong> {formatDate(exp.endDate)}
                 </p>
+                <Button onClick={() => handleDelete(exp._id)}>Elimina</Button>
               </div>
             </li>
           ))}
