@@ -14,7 +14,7 @@ const Home = () => {
         <Col md={6} className="">
           <MainContent></MainContent>
         </Col>
-        <Col md={2} className="">
+        <Col md={3} className="">
           <RightSidebar></RightSidebar>
         </Col>
       </Row>
