@@ -30,15 +30,15 @@ const ExperienceList = () => {
   };
 
   return (
-    <div className="p-4 mt-3" style={{backgroundColor:"white", borderRadius:"10px"}}>
+    <div className="p-4 mt-3" style={{ backgroundColor: "white", borderRadius: "10px" }}>
       <h2 className="text-xl font-bold mb-4">Esperienze Lavorative</h2>
       {experiences.length === 0 ? (
         <p>Nessuna esperienza aggiunta.</p>
       ) : (
-        <ul className="space-y-4" >
+        <ul className="space-y-4">
           {experiences.map((exp) => (
-            <li key={exp._id} className="p-2 bg-gray-100 rounded-md flex justify-between " >
-              <div >
+            <li key={exp._id} className="p-2 bg-gray-100 rounded-md flex justify-between ">
+              <div>
                 <h3 className="text-lg font-semibold">{exp.role}</h3>
                 <p className="text-sm text-gray-600">
                   <strong>Azienda:</strong> {exp.company}
