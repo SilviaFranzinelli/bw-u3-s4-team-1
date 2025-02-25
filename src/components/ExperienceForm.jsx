@@ -36,7 +36,7 @@ const ExperienceForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 bg-white shadow-md rounded-md space-y-3">
+    <form onSubmit={handleSubmit} className="p-4 bg-white shadow-md space-y-3" style={{borderRadius:"10px"}}>
       <h2 className="text-lg font-bold">Aggiungi Esperienza</h2>
       <input
         type="text"
@@ -66,7 +66,7 @@ const ExperienceForm = () => {
         onChange={(e) => setPeriod(e.target.value)}
         className="w-full p-2 border rounded-md"
       />
-      <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md">
+      <button type="submit"  style={{borderRadius:"50px", marginLeft:"10px", backgroundColor:"#0A66C2", color:"white", border:"solid 1px white", padding:"6px"}}>
         Aggiungi
       </button>
     </form>
