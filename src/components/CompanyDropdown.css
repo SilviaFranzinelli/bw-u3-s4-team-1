@@ -1,0 +1,139 @@
+/* Stile per il bottone che attiva il dropdown */
+.btn-group .btn {
+  background-color: #007bff; /* Colore blu per il bottone */
+  color: white; /* Colore del testo */
+  border: none; /* Rimuove il bordo predefinito */
+  padding: 10px 20px; /* Spaziatura interna */
+  display: flex;
+  align-items: center; /* Centra l'icona con il testo */
+  border-radius: 25px; /* Bordo arrotondato */
+  transition: background-color 0.3s ease; /* Transizione sul colore di sfondo */
+}
+
+.btn-group .btn:hover {
+  background-color: #0056b3; /* Colore blu scuro al passaggio del mouse */
+}
+
+/* Stile per il menu a discesa */
+.dropdown-menu {
+  padding: 20px; /* Spaziatura interna */
+  border-radius: 10px; /* Bordo arrotondato */
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1); /* Ombra del menu */
+  background-color: #ffffff; /* Colore di sfondo bianco */
+  min-width: 600px; /* Larghezza minima */
+  display: flex;
+  flex-direction: row; /* Disposizione orizzontale per le colonne */
+  gap: 20px; /* Aggiungi spazio tra le colonne */
+  transition: transform 0.3s ease; /* Animazione al dropdown */
+}
+
+.dropdown-menu.show {
+  transform: translateY(10px); /* Leggera animazione */
+}
+
+/* Colonna sinistra */
+.left-list {
+  width: 50%;
+  font-size: 16px;
+}
+
+.left-list h2 {
+  font-size: 18px;
+  color: #007bff;
+  margin-bottom: 15px; /* Distanza tra il titolo e la lista */
+}
+
+.left-list li {
+  list-style-type: none;
+  padding: 10px 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease; /* Transizione per il colore di sfondo */
+}
+
+.left-list li:hover {
+  background-color: #f1f1f1;
+  text-decoration: underline; /* Sottolineatura al passaggio del mouse */
+}
+
+.left-list li a {
+  text-decoration: none;
+  color: #212529;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Distanza tra icona e testo */
+  padding-left: 10px;
+}
+
+.left-list li a:hover {
+  color: #007bff; /* Colore blu al passaggio del mouse */
+}
+
+/* Colonna destra */
+.right-list {
+  width: 50%;
+  font-size: 16px;
+}
+
+.right-list h2 {
+  font-size: 18px;
+  color: #007bff;
+  margin-bottom: 15px; /* Distanza tra il titolo e la lista */
+}
+
+.right-list li {
+  list-style-type: none;
+  padding: 10px 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.right-list li:hover {
+  background-color: #f1f1f1;
+  text-decoration: underline;
+}
+
+.right-list li a {
+  text-decoration: none;
+  color: #212529;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 10px;
+}
+
+.right-list li a:hover {
+  color: #007bff;
+}
+
+/* Divider tra le due colonne */
+.dropdown-divider {
+  border-top: 1px solid #e9ecef;
+  margin: 20px 0;
+}
+
+/* Aggiungi una leggera ombra al link dell'ultimo elemento */
+.dropdown-menu .dropdown-item:last-child {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.dropdown-menu .dropdown-item:last-child:hover {
+  background-color: #e9f7ff;
+  color: #0056b3;
+}
+
+.dropdown-menu .dropdown-item {
+  transition: color 0.3s ease;
+}
+
+/* Aggiusta la larghezza del dropdown per non causare overflow */
+.dropdown-menu.dropdown-menu-lg-end.show {
+  width: max-content;
+  height: auto;
+  max-height: 500px;
+  overflow-y: auto;
+}
