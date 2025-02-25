@@ -1,6 +1,7 @@
 import { Button, Col, Container, Form, Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BellFill, BriefcaseFill, ChatDotsFill, HouseDoorFill } from "react-bootstrap-icons";
+import CompanyDropdown from "./CompanyDropdown"; // Importa il nuovo componente
 
 function Topbar() {
   return (
@@ -33,6 +34,10 @@ function Topbar() {
             <Nav.Link href="#Notifiche">
               <BellFill className="fs-3" /> Notifiche
             </Nav.Link>
+
+            {/* Aggiungi il dropdown delle aziende */}
+            <CompanyDropdown className="p-8" />
+
             <NavDropdown title="Profilo" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/profile">
                 Profilo
