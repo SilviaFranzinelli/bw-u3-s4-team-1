@@ -1,10 +1,23 @@
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+import RightSidebar from "./RightSidebar";
+import LeftSidebar from "./LeftSidebar";
+import MainContent from "./MainContent";
+
 
 const Home = () => {
   return (
-    <Container className="mt-5">
-      <h2>Benvenuto su LinkedIn</h2>
-      <p>Questa è la pagina principale. Vai al profilo per vedere i dettagli utente.</p>
+    <Container className="mt-3">
+      <Row className="justify-content-center">
+        <Col md={2} className="">
+          <LeftSidebar></LeftSidebar>
+        </Col>
+        <Col md={6} className="">
+          <MainContent></MainContent>
+        </Col>
+        <Col md={2} className="">
+          <RightSidebar></RightSidebar>
+        </Col>
+      </Row>
     </Container>
   );
 };
