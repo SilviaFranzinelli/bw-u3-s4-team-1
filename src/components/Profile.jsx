@@ -7,6 +7,7 @@ import MultiProfiles from "./MultiProfiles";
 import ModMyProfile from "./ModMyProfile";
 import ExperienceForm from "./ExperienceForm";
 import ExperienceList from "./ExperienceList";
+import MultiProfiles2 from "./MultiProfiles2";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function Profile() {
   return (
     <Container className="mt-4">
       <Row>
-        <Col>
+        <Col className="col-7">
           <Card className="position-relative">
             <Card.Img variant="top" src="https://fastly.picsum.photos/id/569/180/100.jpg?hmac=6mJtfv29xTFKnoJek41sH5-F4br3ykBkqLCx-Zrov60" />
             <div className="position-absolute" style={{ marginTop: "150px" }}>
@@ -48,8 +49,19 @@ function Profile() {
             </Card.Body>
           </Card>
         </Col>
-        <Col></Col>
-        <MultiProfiles />
+        <Col className="col-3">
+          <div>
+
+          </div>
+          <div>
+            <MultiProfiles /> 
+          </div>
+          <div className="mt-4">
+            <MultiProfiles2 /> 
+          </div>
+          
+        </Col>
+        
       </Row>
 
       {/* Sezione Esperienze Lavorative */}
