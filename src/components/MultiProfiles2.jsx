@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
 import { PersonPlusFill } from "react-bootstrap-icons";
 
-function MultiProfiles() {
+function MultiProfiles2() {
   const dispatch = useDispatch();
   const profiles = useSelector((state) => state.multiProfiles.multiProfiles || []);
 
@@ -19,7 +19,7 @@ function MultiProfiles() {
       {profiles.length === 0 ? (
         <p>Caricamento profili...</p>
       ) : (
-        profiles.slice(0, 5).map((profile) => (
+        profiles.slice(10, 15).map((profile) => (
           <div key={profile._id} >
             <Row className="items">
               <Col className="col-3 ms-2 "><img src={profile.image} alt="" style={{borderRadius:"50%", height:"40px", width:"40px" }}/></Col>
@@ -37,4 +37,4 @@ function MultiProfiles() {
   );
 }
 
-export default MultiProfiles;
+export default MultiProfiles2;
