@@ -14,69 +14,35 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   return response.json();
 });
 
-// Create a new post
-export const createPost = createAsyncThunk("posts/createPost", async (newPost) => {
-  const response = await fetch(API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${BEARER_TOKEN}`,
-    },
-    body: JSON.stringify(newPost),
-  });
-  return response.json();
-});
-
-// Update a post
-export const updatePost = createAsyncThunk("posts/updatePost", async ({ id, updatedPost }) => {
-  const response = await fetch(`${API_URL}/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${BEARER_TOKEN}`,
-    },
-    body: JSON.stringify(updatedPost),
-  });
-  return response.json();
-});
-
-// Delete a post
-export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
-  await fetch(`${API_URL}/${id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${BEARER_TOKEN}`,
-    },
-  });
-  return id;
-});
-
 const postSlice = createSlice({
   name: "posts",
   initialState: {
     content: [],
     status: "idle",
     error: null,
+    visiblePostsCount: 20, // Numero di post visibili inizialmente
   },
-  reducers: {},
+  reducers: {
+    loadMorePosts: (state) => {
+      state.visiblePostsCount += 20; // Aumenta il numero di post visibili per ogni clic
+    },
+  },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchPosts.pending, (state) => {
+        state.status = "loading";
+      })
       .addCase(fetchPosts.fulfilled, (state, action) => {
+        state.status = "succeeded";
         state.content = action.payload;
       })
-      .addCase(createPost.fulfilled, (state, action) => {
-        state.content.push(action.payload);
-      })
-      .addCase(updatePost.fulfilled, (state, action) => {
-        const index = state.content.findIndex((post) => post._id === action.payload._id);
-        if (index !== -1) {
-          state.content[index] = action.payload;
-        }
-      })
-      .addCase(deletePost.fulfilled, (state, action) => {
-        state.content = state.content.filter((post) => post._id !== action.payload);
+      .addCase(fetchPosts.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });
+
+export const { loadMorePosts } = postSlice.actions;
 
 export default postSlice.reducer;
