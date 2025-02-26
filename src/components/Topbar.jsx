@@ -7,9 +7,7 @@ function Topbar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Link to="/">
-          <img src="src/assets/logo.png" alt="logo" style={{ height: "40px" }} />
-        </Link>
+        <img src="src/assets/logo.png" alt="logo" style={{ height: "40px" }} />
         <Form className="d-flex ms-3" onSubmit={(e) => e.preventDefault()}>
           <Row>
             <Col xs="auto">
@@ -37,10 +35,10 @@ function Topbar() {
               <HouseDoorFill className="fs-3" /> Home
             </Nav.Link>
 
-            <Nav.Link href="#lavoro">
+            <Nav.Link href="#lavoro" className="d-flex flex-column align-items-center mx-2">
               <BriefcaseFill className="fs-3" /> Lavoro
             </Nav.Link>
-            <Nav.Link href="#Messaggistica">
+            <Nav.Link href="#Messaggistica" className="d-flex flex-column align-items-center mx-2">
               <ChatDotsFill className="fs-3" /> Messaggistica
             </Nav.Link>
             <Nav.Link href="#Notifiche" className="d-flex flex-column align-items-center mx-2">
