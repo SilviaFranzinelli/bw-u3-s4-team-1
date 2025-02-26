@@ -6,10 +6,13 @@ import { Heart, Chat, Share, Send } from "react-bootstrap-icons"; // Import dell
 import { newPost } from "../redux/actions/newPost";
 import { getProfile } from "../redux/actions";
 import { fetchDeletePost } from "../redux/actions/deletePost";
+import ModMyPosts from "./ModMyPosts";
 
 const MainContent = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [showModal, setShowModal] = useState(false); // Stato per mostrare il modal
   const profile = useSelector((state) => state.profile?.content);
   const { content: posts, status, visiblePostsCount } = useSelector((state) => state.posts);
 
@@ -54,6 +57,16 @@ const MainContent = () => {
       dispatch(fetchDeletePost(idPost));
       dispatch(fetchPosts());
     }
+  };
+
+  const handleOpenModal = (event, postToEdit) => {
+    console.log("Post da modificare:", postToEdit);
+    setSelectedPost(postToEdit._id);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false); // Chiudi il modal
   };
 
   return (
@@ -114,7 +127,10 @@ const MainContent = () => {
                       <strong>{post.user.title}</strong>
                     </p>
                     {post.user._id === profile._id && (
-                      <Button onClick={() => handleDelete(post.user._id, post._id)}>Elimina</Button>
+                      <>
+                        <Button onClick={() => handleDelete(post.user._id, post._id)}>Elimina</Button>
+                        <Button onClick={(e) => handleOpenModal(e, post)}>Modifica</Button>
+                      </>
                     )}
 
                     {/* Sezione interazioni con icone */}
@@ -142,7 +158,7 @@ const MainContent = () => {
             ))
           )}
         </Container>
-
+        <ModMyPosts show={showModal} onClose={handleCloseModal} postId={selectedPost} />
         {/* Bottone per caricare altri 20 post */}
         {filteredPosts.length > visiblePostsCount && (
           <Button onClick={handleLoadMore} className="mt-3">
