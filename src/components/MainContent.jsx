@@ -4,10 +4,12 @@ import { fetchPosts, loadMorePosts } from "../redux/reducers/postSlice";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Heart, Chat, Share, Send } from "react-bootstrap-icons"; // Import delle icone
 import { newPost } from "../redux/actions/newPost";
+/* import { getProfile } from "../redux/actions"; */
 
 const MainContent = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
+  /*  const profile = useSelector((state) => state.profile?.content); */
   const { content: posts, status, visiblePostsCount } = useSelector((state) => state.posts);
 
   useEffect(() => {
@@ -16,6 +18,10 @@ const MainContent = () => {
     }
   }, [dispatch, status]);
 
+  /*  useEffect(() => {
+    dispatch(getProfile());
+  }, [dispatch]);
+ */
   const handleLoadMore = () => {
     dispatch(loadMorePosts()); // Aumenta il numero di post visibili
   };
