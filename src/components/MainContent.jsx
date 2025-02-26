@@ -27,7 +27,12 @@ const MainContent = () => {
             <Col className="mt-1" md={1}>
               {profile ? (
                 <>
-                  <img src={profile.image} alt="Profile" className="rounded-circle border border-white" style={{ width: "50px" }} />
+                  <img
+                    src={profile.image}
+                    alt="Profile"
+                    className="rounded-circle border border-white"
+                    style={{ width: "50px" }}
+                  />
                   <p className="mt-1" style={{ fontSize: "12px", fontWeight: "bold" }}>
                     {profile.username}
                   </p>
@@ -37,7 +42,10 @@ const MainContent = () => {
               )}
             </Col>
             <Col md={11} className="mt-2">
-              <Button className="border-secondary text-dark bg-light rounded-5 text-start py-2" style={{ width: "100%" }}>
+              <Button
+                className="border-secondary text-dark bg-light rounded-5 text-start py-2"
+                style={{ width: "100%" }}
+              >
                 Crea Un Post
               </Button>
             </Col>
@@ -73,7 +81,7 @@ const MainContent = () => {
         <Container key={post.id} className="bg-white border rounded-2 mb-3 p-3">
           <Row>
             <Col md={1}>
-              <img src={post.userImage} alt="Post User" className="rounded-circle" style={{ width: "40px" }} />
+              <img src={post.user.image} alt="Post User" className="rounded-circle" style={{ width: "40px" }} />
             </Col>
             <Col md={11}>
               <p style={{ fontWeight: "600" }}>{post.username}</p>
