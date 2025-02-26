@@ -4,12 +4,12 @@ import { fetchPosts, loadMorePosts } from "../redux/reducers/postSlice";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Heart, Chat, Share, Send } from "react-bootstrap-icons"; // Import delle icone
 import { newPost } from "../redux/actions/newPost";
-/* import { getProfile } from "../redux/actions"; */
+import { getProfile } from "../redux/actions";
 
 const MainContent = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
-  /*  const profile = useSelector((state) => state.profile?.content); */
+  const profile = useSelector((state) => state.profile?.content);
   const { content: posts, status, visiblePostsCount } = useSelector((state) => state.posts);
 
   useEffect(() => {
@@ -18,10 +18,10 @@ const MainContent = () => {
     }
   }, [dispatch, status]);
 
-  /*  useEffect(() => {
+  useEffect(() => {
     dispatch(getProfile());
   }, [dispatch]);
- */
+
   const handleLoadMore = () => {
     dispatch(loadMorePosts()); // Aumenta il numero di post visibili
   };
@@ -43,8 +43,8 @@ const MainContent = () => {
     };
 
     dispatch(newPost(newPosts));
-
     setText("");
+    dispatch(fetchPosts());
   };
 
   return (
@@ -52,14 +52,34 @@ const MainContent = () => {
       <Container className="bg-light border rounded-2">
         {/* Altre sezioni del layout */}
         <Container className="mt-3">
-          <form onSubmit={handleSubmit}>
-            <input
-              className="border border-secondary text-dark bg-light rounded-5 text-start py-2 "
-              style={{ width: "100%" }}
-              placeholder="Crea un post"
-              onChange={(e) => setText(e.target.value)}
-            ></input>
-          </form>
+          <Container className="border mb-2 bg-body py-2">
+            <Row>
+              <Col className="mt-1" md={1}>
+                {profile ? (
+                  <>
+                    <img
+                      src={profile.image}
+                      alt="Profile"
+                      className="rounded-circle border border-white"
+                      style={{ width: "50px" }}
+                    />
+                  </>
+                ) : (
+                  <p className="text-muted">Caricamento profilo...</p>
+                )}
+              </Col>
+              <Col md={11} className="mt-2">
+                <form onSubmit={handleSubmit}>
+                  <input
+                    className="border border-secondary text-dark bg-light rounded-5 text-start py-2 ms-2 "
+                    style={{ width: "100%" }}
+                    placeholder="Crea un post"
+                    onChange={(e) => setText(e.target.value)}
+                  ></input>
+                </form>
+              </Col>
+            </Row>
+          </Container>
           {status === "loading" ? (
             <p>Caricamento in corso...</p>
           ) : status === "failed" ? (
