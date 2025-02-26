@@ -54,6 +54,7 @@ const MainContent = () => {
   const handleDelete = (idUser, idPost) => {
     /* console.log(id); */
     if (idUser === profile._id) {
+      confirm("Conferma per eliminare il tuo commento!");
       dispatch(fetchDeletePost(idPost));
       dispatch(fetchPosts());
     }
