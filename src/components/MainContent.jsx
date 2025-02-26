@@ -5,6 +5,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { Heart, Chat, Share, Send } from "react-bootstrap-icons"; // Import delle icone
 import { newPost } from "../redux/actions/newPost";
 import { getProfile } from "../redux/actions";
+import { fetchDeletePost } from "../redux/actions/deletePost";
 
 const MainContent = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,14 @@ const MainContent = () => {
     await dispatch(newPost(newPosts));
     setText("");
     dispatch(fetchPosts());
+  };
+
+  const handleDelete = (idUser, idPost) => {
+    /* console.log(id); */
+    if (idUser === profile._id) {
+      dispatch(fetchDeletePost(idPost));
+      dispatch(fetchPosts());
+    }
   };
 
   return (
@@ -89,6 +98,7 @@ const MainContent = () => {
             visiblePosts.map((post) => (
               <Container key={post._id} className="bg-white border rounded-2 mb-3 p-3">
                 <Row>
+                  {console.log(post.user._id)}
                   <Col md={1}>
                     <img src={post.user.image} alt="Post User" className="rounded-circle" style={{ width: "40px" }} />
                   </Col>
@@ -103,6 +113,9 @@ const MainContent = () => {
                     <p>
                       <strong>{post.user.title}</strong>
                     </p>
+                    {post.user._id === profile._id && (
+                      <Button onClick={() => handleDelete(post.user._id, post._id)}>Elimina</Button>
+                    )}
 
                     {/* Sezione interazioni con icone */}
                     <Row className="mt-3">
