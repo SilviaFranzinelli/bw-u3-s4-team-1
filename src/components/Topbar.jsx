@@ -22,7 +22,7 @@ function Topbar() {
                 <i className="bi bi-search position-absolute top-50 translate-middle-y" style={{ left: "10px" }}></i>
                 <Form.Control
                   type="text"
-                  placeholder="Search"
+                  placeholder="Cerca"
                   className="pl-5"
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
@@ -54,14 +54,16 @@ function Topbar() {
               <BriefcaseFill className="fs-3" /> Lavoro
             </Nav.Link>
             <Nav.Link
-              href="#Messaggistica"
+              as={Link}
+              to="#Messaggistica"
               className={`d-flex flex-column align-items-center mx-2 ${activeIcon === "messaggistica" ? "active" : ""}`}
               onClick={() => handleIconClick("messaggistica")}
             >
               <ChatDotsFill className="fs-3" /> Messaggistica
             </Nav.Link>
             <Nav.Link
-              href="#Notifiche"
+              as={Link}
+              to="#Notifiche"
               className={`d-flex flex-column align-items-center mx-2 ${activeIcon === "notifiche" ? "active" : ""}`}
               onClick={() => handleIconClick("notifiche")}
             >
