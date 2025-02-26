@@ -1,4 +1,4 @@
-import { Card, Col, Container, Row} from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProfile } from "../redux/actions";
@@ -15,7 +15,7 @@ const LeftSidebar = () => {
   return (
     <>
       <Card className="mb-3">
-        <Card.Img variant="top" src="https://fastly.picsum.photos/id/569/180/100.jpg?hmac=6mJtfv29xTFKnoJek41sH5-F4br3ykBkqLCx-Zrov60" alt="Background" />
+        <Card.Img variant="top" src="src\assets\images.JPG" alt="Background" />
         <Card.Body className="text-center " style={{ position: "relative", bottom: "50px", height: "120px" }}>
           {profile ? (
             <>
