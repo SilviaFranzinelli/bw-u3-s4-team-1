@@ -32,7 +32,7 @@ const MainContent = () => {
   // Slice dei post da visualizzare
   const visiblePosts = filteredPosts.reverse().slice(0, visiblePostsCount);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     console.log("handleSubmit");
@@ -42,7 +42,7 @@ const MainContent = () => {
       text,
     };
 
-    dispatch(newPost(newPosts));
+    await dispatch(newPost(newPosts));
     setText("");
     dispatch(fetchPosts());
   };
