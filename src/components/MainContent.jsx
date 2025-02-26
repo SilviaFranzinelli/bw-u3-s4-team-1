@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect /* , useState */ } from "react";
+import { useEffect, useState } from "react";
 import { fetchPosts, loadMorePosts } from "../redux/reducers/postSlice";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Heart, Chat, Share, Send } from "react-bootstrap-icons"; // Import delle icone
-/* import { newPost } from "../redux/actions/newPost"; */
+import { newPost } from "../redux/actions/newPost";
 
 const MainContent = () => {
   const dispatch = useDispatch();
-  /*   const [text,setText] = useState("") */
+  const [text, setText] = useState("");
   const { content: posts, status, visiblePostsCount } = useSelector((state) => state.posts);
 
   useEffect(() => {
@@ -24,9 +24,9 @@ const MainContent = () => {
   const filteredPosts = posts.filter((post) => post.user && post.user.image && post.user.bio && post.user.title);
 
   // Slice dei post da visualizzare
-  const visiblePosts = filteredPosts.slice(0, visiblePostsCount);
+  const visiblePosts = filteredPosts.reverse().slice(0, visiblePostsCount);
 
-  /*   const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     console.log("handleSubmit");
@@ -40,12 +40,20 @@ const MainContent = () => {
 
     setText("");
   };
- */
+
   return (
     <>
       <Container className="bg-light border rounded-2">
         {/* Altre sezioni del layout */}
         <Container className="mt-3">
+          <form onSubmit={handleSubmit}>
+            <input
+              className="border border-secondary text-dark bg-light rounded-5 text-start py-2 "
+              style={{ width: "100%" }}
+              placeholder="Crea un post"
+              onChange={(e) => setText(e.target.value)}
+            ></input>
+          </form>
           {status === "loading" ? (
             <p>Caricamento in corso...</p>
           ) : status === "failed" ? (
