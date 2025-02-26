@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect /* , useState */ } from "react";
 import { fetchPosts, loadMorePosts } from "../redux/reducers/postSlice";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Heart, Chat, Share, Send } from "react-bootstrap-icons"; // Import delle icone
+/* import { newPost } from "../redux/actions/newPost"; */
 
 const MainContent = () => {
   const dispatch = useDispatch();
+  /*   const [text,setText] = useState("") */
   const { content: posts, status, visiblePostsCount } = useSelector((state) => state.posts);
 
   useEffect(() => {
@@ -24,6 +26,21 @@ const MainContent = () => {
   // Slice dei post da visualizzare
   const visiblePosts = filteredPosts.slice(0, visiblePostsCount);
 
+  /*   const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log("handleSubmit");
+
+    if (!text) return;
+    const newPosts = {
+      text,
+    };
+
+    dispatch(newPost(newPosts));
+
+    setText("");
+  };
+ */
   return (
     <>
       <Container className="bg-light border rounded-2">
