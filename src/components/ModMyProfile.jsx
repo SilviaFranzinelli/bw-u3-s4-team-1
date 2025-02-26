@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal, FloatingLabel, } from "react-bootstrap";
 import { modProfile } from "../redux/actions/ModMyProfile";
 
 function ModMyProfile({ show, onClose }) {
@@ -58,6 +58,20 @@ function ModMyProfile({ show, onClose }) {
             <Form.Label>Professione</Form.Label>
             <Form.Control type="text" name="title" value={localProfile.title} onChange={handleChange} />
           </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Località / Regione / Nazione</Form.Label>
+            <Form.Control type="text" name="area" value={localProfile.area} onChange={handleChange} />
+          </Form.Group>
+          <FloatingLabel controlId="floatingBio" label="Aggiungi descrizione">
+            <Form.Control
+              type="text"
+              name="bio"
+              value={localProfile.bio}
+              onChange={handleChange}
+              placeholder="Aggiungi descrizione"
+              style={{ height: "100px" }}
+            />
+          </FloatingLabel>
 
           <Modal.Footer>
             <Button variant="secondary" onClick={onClose}>
