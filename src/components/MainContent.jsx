@@ -21,7 +21,7 @@ const MainContent = () => {
   };
 
   // Filtra i post per includere solo quelli con tutti i campi necessari
-  const filteredPosts = posts.filter((post) => post.user && post.user.image && post.user.bio && post.user.title);
+  const filteredPosts = posts.filter((post) => post.text);
 
   // Slice dei post da visualizzare
   const visiblePosts = filteredPosts.reverse().slice(0, visiblePostsCount);
