@@ -14,13 +14,20 @@ function MultiProfiles() {
 
   console.log("aaaaaaaaaaaaa", profiles);
 
+  const getRandomProfiles = (profiles, count) => {
+    return [...profiles].sort(() => Math.random() - 0.5).slice(0, count);
+  };
+
+  const randomProfiles = getRandomProfiles(profiles, 5);
+
+
   return (
     <div className="p-3" style={{backgroundColor:"white", borderRadius:"10px"}}>
       <p>Altre visualizzazioni</p>
       {profiles.length === 0 ? (
         <p>Caricamento profili...</p>
       ) : (
-        profiles.slice(0, 5).map((profile) => (
+        randomProfiles.map((profile) => (
           <div key={profile._id} >
             
             <Row className="items">
