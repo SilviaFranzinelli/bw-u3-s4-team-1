@@ -1,15 +1,22 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import profileReducers from "../reducers/profileReducers";
+import multiProfilesReducer from "../reducers/multiProfileReducers";
+import getExperiencesReducers from "../reducers/experiencesReducers";
+import postSlice from "../reducers/postSlice"; // Import del reducer dei post
+import postReducer from "../reducers/newPost";
 
-// 📌 Reducer vuoto temporaneo per evitare errori
 const rootReducer = combineReducers({
-  placeholder: (state = {}) => state, // 🔴 Questo è un reducer temporaneo
+  profile: profileReducers,
+  multiProfiles: multiProfilesReducer,
+  experience: getExperiencesReducers,
+  posts: postSlice, // Aggiunto il reducer dei post
+  myPost: postReducer,
 });
 
-// 📌 Configurazione dello store Redux
 const store = configureStore({
   reducer: rootReducer,
 });
 
-console.log("🛠️ Redux Store Creato:", store.getState());
+console.log("\uD83D\uDEE0️ Redux Store Creato:", store.getState());
 
 export default store;
