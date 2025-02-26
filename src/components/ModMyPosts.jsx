@@ -46,7 +46,7 @@ function ModMyPosts({ show, onClose, postId }) {
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label>ID Post: {postId}</Form.Label>
+            <Form.Label>Modifica il tuo post:</Form.Label>
             <Form.Control type="text" value={updatedText} onChange={handleChange} />
           </Form.Group>
           <Modal.Footer>
