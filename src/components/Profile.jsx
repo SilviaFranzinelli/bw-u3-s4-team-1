@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../redux/actions";
 import { Card, Col, Container, Row } from "react-bootstrap";
-import { Pencil } from "react-bootstrap-icons";
+import { Pencil, Pen } from "react-bootstrap-icons";
 import MultiProfiles from "./MultiProfiles";
 import ModMyProfile from "./ModMyProfile";
 import ExperienceForm from "./ExperienceForm";
@@ -35,8 +35,8 @@ function Profile() {
       <Row>
         <Col className="col-7">
           <Card className="position-relative">
-            <Card.Img variant="top" src="https://fastly.picsum.photos/id/569/180/100.jpg?hmac=6mJtfv29xTFKnoJek41sH5-F4br3ykBkqLCx-Zrov60" />
-            <div className="position-absolute" style={{ marginTop: "150px" }}>
+            <Card.Img style={{height:"13rem"}} variant="top" src="https://fastly.picsum.photos/id/569/180/100.jpg?hmac=6mJtfv29xTFKnoJek41sH5-F4br3ykBkqLCx-Zrov60" />
+            <div className="position-absolute" style={{ marginTop: "50px"}}>
               <img className="profileImage" src={profile.image} alt="profile" style={{ border: "solid 5px white", borderRadius: "50%" }} />
             </div>
             <div className="position-absolute end-0 bg-white p-2 m-2" style={{ borderRadius: "60%" }}>
@@ -48,12 +48,38 @@ function Profile() {
               <Card.Text>{profile.title}</Card.Text>
             </Card.Body>
           </Card>
+          {/* ESPERIENZE LAVORATIVE */}
+          <Row className="mt-5">
+            <Col>
+              
+              <ExperienceForm />
+              <ExperienceList />
+            </Col>
+          </Row>
         </Col>
         <Col className="col-3">
-          <div>
-
+          <div className="p-3" style={{backgroundColor:"white", borderRadius:"10px"}}>
+            <Row>
+              <Col className="col-10">
+                <p style={{fontWeight:"bold", fontSize:"20px"}}>Lingua del profilo</p>
+                <p>Italiano</p>
+              </Col>
+              <Col>
+                <Pen></Pen>
+              </Col>
+            </Row>
+            <hr />
+            <Row>
+              <Col className="col-10">
+                <p style={{fontWeight:"bold", fontSize:"20px"}}>Profilo pubblico e URL</p>
+                <p>...</p>
+              </Col>
+              <Col>
+                <Pen></Pen>
+              </Col>
+            </Row>
           </div>
-          <div>
+          <div className="mt-4">
             <MultiProfiles /> 
           </div>
           <div className="mt-4">
@@ -64,14 +90,8 @@ function Profile() {
         
       </Row>
 
-      {/* Sezione Esperienze Lavorative */}
-      <Row className="mt-5">
-        <Col>
-          <h2 className="text-center">Esperienze Lavorative</h2>
-          <ExperienceForm />
-          <ExperienceList />
-        </Col>
-      </Row>
+      
+      
 
       <ModMyProfile show={showModal} onClose={handleCloseModal} />
     </Container>

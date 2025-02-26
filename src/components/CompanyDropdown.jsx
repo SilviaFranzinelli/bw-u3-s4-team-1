@@ -16,7 +16,7 @@ import {
 
 function CompanyDropdown() {
   return (
-    <div className="dropdown">
+    <div className="dropdown mt-3">
       <div className="dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
         <Building className="fs-3" /> Aziende
       </div>

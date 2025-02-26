@@ -16,11 +16,13 @@ function MultiProfiles() {
 
   return (
     <div className="p-3" style={{backgroundColor:"white", borderRadius:"10px"}}>
+      <p>Altre visualizzazioni</p>
       {profiles.length === 0 ? (
         <p>Caricamento profili...</p>
       ) : (
         profiles.slice(0, 5).map((profile) => (
           <div key={profile._id} >
+            
             <Row className="items">
               <Col className="col-3 ms-2 "><img src={profile.image} alt="" style={{borderRadius:"50%", height:"40px", width:"40px" }}/></Col>
               <Col>
