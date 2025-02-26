@@ -1,3 +1,8 @@
-body { 
-    background-color: #F4F2EE !important;
+body {
+  background-color: #f4f2ee !important;
+}
+
+.active {
+  background-color: lightgray; /* Esempio di stile */
+  /* Aggiungi altri stili necessari */
 }
