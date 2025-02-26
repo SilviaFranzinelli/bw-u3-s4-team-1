@@ -9,7 +9,7 @@
 //   const [showPostSection, setShowPostSection] = useState(false);
 
 //   useEffect(() => {
-//     // dispatch(getProfile());
+//     dispatch(getProfile());
 //   }, [dispatch]);
 
 //   const handleCreatePost = () => {
