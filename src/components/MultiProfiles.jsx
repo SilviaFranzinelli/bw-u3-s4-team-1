@@ -22,7 +22,7 @@ function MultiProfiles() {
 
 
   return (
-    <div className="p-3" style={{backgroundColor:"white", borderRadius:"10px"}}>
+    <div className="p-3 border" style={{backgroundColor:"white", borderRadius:"10px"}}>
       <p>Altre visualizzazioni</p>
       {profiles.length === 0 ? (
         <p>Caricamento profili...</p>
