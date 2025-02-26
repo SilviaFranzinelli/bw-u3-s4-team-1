@@ -34,10 +34,10 @@ function Topbar() {
             <Nav.Link as={Link} to="/" className="d-flex flex-column align-items-center me-3">
               <HouseDoorFill className="fs-3" /> Home
             </Nav.Link>
-
-            <Nav.Link href="#lavoro" className="d-flex flex-column align-items-center mx-2">
+            <Nav.Link as={Link} to="/lavoro" className="d-flex flex-column align-items-center me-3">
               <BriefcaseFill className="fs-3" /> Lavoro
             </Nav.Link>
+
             <Nav.Link href="#Messaggistica" className="d-flex flex-column align-items-center mx-2">
               <ChatDotsFill className="fs-3" /> Messaggistica
             </Nav.Link>
