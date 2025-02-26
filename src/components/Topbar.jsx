@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Col, Container, Form, Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BellFill, BriefcaseFill, ChatDotsFill, HouseDoorFill } from "react-bootstrap-icons";
-// import CompanyDropdown from "./CompanyDropdown";
+import CompanyDropdown from "./CompanyDropdown";
 
 function Topbar() {
   const [activeIcon, setActiveIcon] = useState(null);
@@ -67,7 +67,7 @@ function Topbar() {
             >
               <BellFill className="fs-3" /> Notifiche
             </Nav.Link>
-            {/* <CompanyDropdown className="p-8 mt-3" /> */}
+            <CompanyDropdown className="p-8 mt-3" />
             <NavDropdown title="Profilo" id="basic-nav-dropdown" className="mt-2">
               <NavDropdown.Item as={Link} to="/profile" className="d-flex flex-column align-items-center">
                 Profilo
