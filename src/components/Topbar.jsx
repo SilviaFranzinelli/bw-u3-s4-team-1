@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Per aggiornare l'URL
 import { Col, Container, Form, Nav, Navbar, NavDropdown, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { BellFill, BriefcaseFill, ChatDotsFill, HouseDoorFill } from "react-bootstrap-icons";
+import { BellFill, BriefcaseFill, ChatDotsFill, HouseDoorFill, PeopleFill } from "react-bootstrap-icons";
 import CompanyDropdown from "./CompanyDropdown";
 
 function Topbar() {
@@ -81,6 +81,14 @@ function Topbar() {
               onClick={() => handleIconClick("lavoro")}
             >
               <BriefcaseFill className="fs-3" /> Lavoro
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/search"
+              className={`d-flex flex-column align-items-center me-3 ${activeIcon === "lavoro" ? "active" : ""}`}
+              onClick={() => handleIconClick("lavoro")}
+            >
+              <PeopleFill className="fs-3" /> La tua rete
             </Nav.Link>
             <Nav.Link
               as={Link}
