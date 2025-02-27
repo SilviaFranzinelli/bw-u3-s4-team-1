@@ -7,6 +7,7 @@ import MultiProfiles from "./MultiProfiles";
 import ModMyProfile from "./ModMyProfile";
 import ExperienceList from "./ExperienceList";
 import MultiProfiles2 from "./MultiProfiles2";
+import Footer from "./Footer"
 
 function Profile() {
   const dispatch = useDispatch();
@@ -186,7 +187,7 @@ function Profile() {
           <div className="mt-4">
             <MultiProfiles2 />
           </div>
-          
+          <Footer></Footer>
         </Col>
         
       </Row>
