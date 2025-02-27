@@ -97,7 +97,7 @@ const MainContent = () => {
                 <form onSubmit={handleSubmit}>
                   <input
                     className="border border-secondary text-dark bg-light rounded-5 text-start py-2 ms-2 "
-                    style={{ width: "100%" }}
+                    style={{ width: "100%", paddingLeft: "1rem" }}
                     placeholder="Crea un post"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
