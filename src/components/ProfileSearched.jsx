@@ -19,6 +19,17 @@ const ProfileSearched = () => {
     }
   }, [dispatch, id]);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("it-IT", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
   return (
     <>
       {profiles && profiles.length > 0 ? (
@@ -40,7 +51,7 @@ const ProfileSearched = () => {
                 <Card.Text>
                   Descrizione: <strong>{profile.description}</strong>
                 </Card.Text>
-                <Card.Text>{profile.updatedAt}</Card.Text>
+                <Card.Text>{formatDate(profile.updatedAt)}</Card.Text>
               </Card.Body>
             </Card>
           ))
