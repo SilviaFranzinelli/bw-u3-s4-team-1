@@ -48,7 +48,7 @@ const ProfileSearched = () => {
                   Ruolo: <strong>{profile.title}</strong>
                 </Card.Text>
                 <Card.Text>
-                  Descrizione: <strong>{profile.bio}</strong>
+                  Bio: <strong>{profile.bio}</strong>
                 </Card.Text>
                 <Card.Text>{formatDate(profile.updatedAt)}</Card.Text>
               </Card.Body>
