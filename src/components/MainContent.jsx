@@ -97,7 +97,7 @@ const MainContent = () => {
                 <form onSubmit={handleSubmit}>
                   <input
                     className="border border-secondary text-dark bg-light rounded-5 text-start py-2 ms-2 "
-                    style={{ width: "100%" }}
+                    style={{ width: "100%", paddingLeft: "1rem" }}
                     placeholder="Crea un post"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
@@ -132,7 +132,9 @@ const MainContent = () => {
                     {post.user._id === profile._id && ( //un'altro controllo per confrontare l'id profilo con quello dell'user del commento,così i button modifica ed elimina si visualizzeranno solo se il commento è il tuo
                       <>
                         <Button onClick={() => handleDelete(post.user._id, post._id)}>Elimina</Button>
-                        <Button onClick={(e) => handleOpenModal(e, post)} className="ms-2">Modifica</Button>
+                        <Button onClick={(e) => handleOpenModal(e, post)} className="ms-2">
+                          Modifica
+                        </Button>
                       </>
                     )}
 
