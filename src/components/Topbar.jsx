@@ -76,20 +76,21 @@ function Topbar() {
             </Nav.Link>
             <Nav.Link
               as={Link}
-              to="/lavoro"
-              className={`d-flex flex-column align-items-center me-3 ${activeIcon === "lavoro" ? "active" : ""}`}
-              onClick={() => handleIconClick("lavoro")}
-            >
-              <BriefcaseFill className="fs-3" /> Lavoro
-            </Nav.Link>
-            <Nav.Link
-              as={Link}
               to="/search"
               className={`d-flex flex-column align-items-center me-3 ${activeIcon === "lavoro" ? "active" : ""}`}
               onClick={() => handleIconClick("lavoro")}
             >
               <PeopleFill className="fs-3" /> La tua rete
             </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/lavoro"
+              className={`d-flex flex-column align-items-center me-3 ${activeIcon === "lavoro" ? "active" : ""}`}
+              onClick={() => handleIconClick("lavoro")}
+            >
+              <BriefcaseFill className="fs-3" /> Lavoro
+            </Nav.Link>
+
             <Nav.Link
               as={Link}
               to="#Messaggistica"
