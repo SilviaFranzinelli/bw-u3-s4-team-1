@@ -42,8 +42,8 @@ function ModMyPosts({ show, onClose, postId }) {
   const handleDelete = (idUser, idPost) => {
     /* console.log(id); */
     if (idUser === profile._id) {
-      //confronta l'id dell'user del commento con l'id del nostro user,se è lo stesso fa le dispatch
-      confirm("Conferma per eliminare il tuo commento!");
+      //confronta l'id dell'user del post con l'id del nostro user,se è lo stesso fa le dispatch
+      confirm("Conferma per eliminare il tuo post.");
       dispatch(fetchDeletePost(idPost)); //passo l'id del post per la modifica
       dispatch(fetchPosts()); //richiamo la fetch dei post
     }
