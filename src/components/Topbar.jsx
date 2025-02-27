@@ -39,7 +39,9 @@ function Topbar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <img src="src/assets/logo.png" alt="logo" style={{ height: "40px" }} />
+        <Link to={"/"}>
+          <img src="src/assets/logo.png" alt="logo" style={{ height: "40px" }} />
+        </Link>
         <Form className="d-flex ms-3" onSubmit={handleSearch}>
           <Row>
             <Col xs="auto">

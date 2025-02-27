@@ -124,15 +124,16 @@ const MainContent = () => {
                       {new Date(post.createdAt).toLocaleDateString()}
                     </p>
                     <p>{post.text}</p>
-                    {/* Visualizza la bio, title e immagine del profilo */}
-                    <p>{post.user.bio}</p>
+
                     <p>
                       <strong>{post.user.title}</strong>
                     </p>
                     {post.user._id === profile._id && ( //un'altro controllo per confrontare l'id profilo con quello dell'user del commento,così i button modifica ed elimina si visualizzeranno solo se il commento è il tuo
                       <>
                         <Button onClick={() => handleDelete(post.user._id, post._id)}>Elimina</Button>
-                        <Button onClick={(e) => handleOpenModal(e, post)} className="ms-2">Modifica</Button>
+                        <Button onClick={(e) => handleOpenModal(e, post)} className="ms-2">
+                          Modifica
+                        </Button>
                       </>
                     )}
 
