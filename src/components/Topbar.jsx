@@ -70,21 +70,24 @@ function Topbar() {
               as={Link}
               to="/"
               className={`d-flex flex-column align-items-center me-3 ${activeIcon === "home" ? "active" : ""}`}
-              onClick={() => handleIconClick("home")}>
+              onClick={() => handleIconClick("home")}
+            >
               <HouseDoorFill className="fs-3" /> Home
             </Nav.Link>
             <Nav.Link
               as={Link}
               to="/search"
-              className={`d-flex flex-column align-items-center me-3 ${activeIcon === "lavoro" ? "active" : ""}`}
-              onClick={() => handleIconClick("lavoro")}>
+              className={`d-flex flex-column align-items-center me-3 ${activeIcon === "Rete" ? "active" : ""}`}
+              onClick={() => handleIconClick("Rete")}
+            >
               <PeopleFill className="fs-3" /> Rete
             </Nav.Link>
             <Nav.Link
               as={Link}
               to="/lavoro"
               className={`d-flex flex-column align-items-center me-3 ${activeIcon === "lavoro" ? "active" : ""}`}
-              onClick={() => handleIconClick("lavoro")}>
+              onClick={() => handleIconClick("lavoro")}
+            >
               <BriefcaseFill className="fs-3" /> Lavoro
             </Nav.Link>
 
@@ -92,14 +95,16 @@ function Topbar() {
               as={Link}
               to="/messaggistica" // Cambiato il link da #Messaggistica a /messaggistica
               className={`d-flex flex-column align-items-center mx-2 ${activeIcon === "messaggistica" ? "active" : ""}`}
-              onClick={() => handleIconClick("messaggistica")}>
+              onClick={() => handleIconClick("messaggistica")}
+            >
               <ChatDotsFill className="fs-3" /> Messaggistica
             </Nav.Link>
             <Nav.Link
               as={Link}
               to="#Notifiche"
               className={`d-flex flex-column align-items-center mx-2 ${activeIcon === "notifiche" ? "active" : ""}`}
-              onClick={() => handleIconClick("notifiche")}>
+              onClick={() => handleIconClick("notifiche")}
+            >
               <BellFill className="fs-3" /> Notifiche
             </Nav.Link>
             <CompanyDropdown className="p-8 mt-3" />
