@@ -13,3 +13,6 @@ body {
 .profileSearch {
   text-decoration: none;
 }
+.imageProf {
+  width: 200px !important ;
+}

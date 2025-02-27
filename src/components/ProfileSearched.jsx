@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchProfile } from "../redux/actions/searchProfile";
 import { Card } from "react-bootstrap";
-import { CardImage } from "react-bootstrap-icons";
 
 const ProfileSearched = () => {
   const { id } = useParams(); // Ottieni l'ID dalla URL
@@ -41,7 +40,7 @@ const ProfileSearched = () => {
                 <Card.Title>
                   {profile.name} {profile.surname}
                 </Card.Title>
-                <CardImage>{profile.image}</CardImage>
+                <Card.Img className="imageProf" variant="top" src={profile.image} alt={profile.name} />
                 <Card.Text>
                   Email: <strong>{profile.email}</strong>{" "}
                 </Card.Text>
@@ -49,7 +48,7 @@ const ProfileSearched = () => {
                   Ruolo: <strong>{profile.title}</strong>
                 </Card.Text>
                 <Card.Text>
-                  Descrizione: <strong>{profile.description}</strong>
+                  Descrizione: <strong>{profile.bio}</strong>
                 </Card.Text>
                 <Card.Text>{formatDate(profile.updatedAt)}</Card.Text>
               </Card.Body>
