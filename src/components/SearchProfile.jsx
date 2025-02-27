@@ -3,6 +3,8 @@ import { Form, ListGroup, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMultiProfile } from "../redux/actions";
 
+import { Link } from "react-router-dom";
+
 const UserSearch = () => {
   const [searchName, setSearchName] = useState("");
 
@@ -44,9 +46,11 @@ const UserSearch = () => {
         {filteredUsers.length > 0 ? (
           filteredUsers.map((user) => (
             <ListGroup.Item key={user._id}>
-              <strong>
-                {user.name} {user.surname} - <span className="text-primary"> {user.title}</span>
-              </strong>
+              <Link to={`/profile/${user._id}`}>
+                <strong>
+                  {user.name} {user.surname} - <span className="text-primary"> {user.title}</span>
+                </strong>
+              </Link>
             </ListGroup.Item>
           ))
         ) : (
