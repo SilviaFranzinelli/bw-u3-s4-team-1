@@ -10,6 +10,7 @@ import ExperienceList from "./components/ExperienceList";
 import JobResults from "./components/JobResults"; // Importa il componente JobResults
 import UserSearch from "./components/SearchProfile";
 import ProfileSearched from "./components/ProfileSearched";
+import Messaggistica from "./components/Messaggistica"; // Importa il componente Messaggistica
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/lavoro" element={<JobResults />} /> {/* Modifica questa route */}
           <Route path="/search" element={<UserSearch />} />
           <Route path="/profile/:id" element={<ProfileSearched />} />
+          <Route path="/messaggistica" element={<Messaggistica />} /> {/* Aggiungi la route per la messaggistica */}
           <Route
             path="/experiences"
             element={
