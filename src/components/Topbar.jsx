@@ -80,7 +80,7 @@ function Topbar() {
               className={`d-flex flex-column align-items-center me-3 ${activeIcon === "lavoro" ? "active" : ""}`}
               onClick={() => handleIconClick("lavoro")}
             >
-              <PeopleFill className="fs-3" /> La tua rete
+              <PeopleFill className="fs-3" /> Rete
             </Nav.Link>
             <Nav.Link
               as={Link}
