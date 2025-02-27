@@ -116,10 +116,19 @@ const MainContent = () => {
                 <Row>
                   {console.log(post.user._id)}
                   <Col md={1}>
-                    <img src={post.user.image} alt="Post User" className="rounded-circle" style={{ width: "40px", height:"40px" }} />
+                    <img
+                      src={post.user.image}
+                      alt="Post User"
+                      className="rounded-circle"
+                      style={{ width: "40px", height: "40px" }}
+                    />
                   </Col>
                   <Col md={11}>
-                    <p style={{ fontWeight: "600" }}>{post.user.username}</p>
+                    <p style={{ fontWeight: "600" }}>
+                      {post.user.name}
+                      <span> {post.user.surname}</span>
+                    </p>
+
                     <p className="text-muted" style={{ fontSize: "12px" }}>
                       {new Date(post.createdAt).toLocaleDateString()}
                     </p>
