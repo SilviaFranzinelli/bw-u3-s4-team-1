@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { fetchJobsFailure, fetchJobsStart, fetchJobsSuccess } from "../redux/reducers/jobSlice";
-import { Card, Col, Container, Row, Spinner, Alert, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Col, Container, Row, Spinner, Alert } from "react-bootstrap";
 import JobCard from "./JobCard";
 import LeftSidebar from "./LeftSidebar";
 

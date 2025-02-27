@@ -8,8 +8,8 @@ import CompanyDropdown from "./CompanyDropdown";
 function Topbar() {
   const [activeIcon, setActiveIcon] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState(""); // Stato per la categoria
-  const [company, setCompany] = useState(""); // Stato per l'azienda
+  const [category] = useState(""); // Stato per la categoria
+  const [company] = useState(""); // Stato per l'azienda
   const navigate = useNavigate(); // Hook per navigare
 
   const handleIconClick = (icon) => {
