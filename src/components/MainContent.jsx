@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts, loadMorePosts } from "../redux/reducers/postSlice";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { Heart, Chat, Share, Send, Pen } from "react-bootstrap-icons"; // Import delle icone
+import { Heart, HeartFill, Chat, Share, Send, Pen } from "react-bootstrap-icons"; // Import delle icone
 import { newPost } from "../redux/actions/newPost";
 import { getProfile } from "../redux/actions";
 
@@ -15,6 +15,8 @@ const MainContent = () => {
   const [showModal, setShowModal] = useState(false); // Stato per mostrare il modal
   const profile = useSelector((state) => state.profile?.content);
   const { content: posts, status, visiblePostsCount } = useSelector((state) => state.posts);
+  const [likes, setLikes] = useState({});
+  const [isLiked, setIsLiked] = useState({});
 
   useEffect(() => {
     if (status === "idle") {
@@ -60,6 +62,17 @@ const MainContent = () => {
 
   const handleCloseModal = () => {
     setShowModal(false); // Chiudi il modal
+  };
+
+  const toggleLike = (postId) => {
+    setIsLiked((prev) => ({
+      ...prev,
+      [postId]: !prev[postId],
+    }));
+    setLikes((prev) => ({
+      ...prev,
+      [postId]: prev[postId] ? prev[postId] + (isLiked[postId] ? -1 : 1) : 1,
+    }));
   };
 
   return (
@@ -137,8 +150,14 @@ const MainContent = () => {
                     {/* Sezione interazioni con icone */}
                     <Row className="mt-3">
                       <Col>
-                        <Heart className="text-danger" style={{ fontSize: "18px" }} /> {/* Icona cuore */}
-                        <span className="ms-1">225</span>
+                        <Button variant="link" className="p-0" onClick={() => toggleLike(post._id)}>
+                          {isLiked[post._id] ? (
+                            <HeartFill className="text-danger" style={{ fontSize: "18px" }} />
+                          ) : (
+                            <Heart className="text-danger" style={{ fontSize: "18px" }} />
+                          )}
+                        </Button>
+                        <span className="ms-1 p-0">{likes[post._id] || 0}</span>
                       </Col>
                       <Col>
                         <Chat className="text-primary" style={{ fontSize: "18px" }} /> {/* Icona commento */}
