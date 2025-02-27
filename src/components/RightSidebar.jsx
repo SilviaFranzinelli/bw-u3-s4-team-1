@@ -18,26 +18,36 @@ const fetchNews = async () => {
 };
 
 const getRandomNews = (news, count) => {
-  const shuffled = news.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+  const notizie = news.sort(() => 0.5 - Math.random());
+  return notizie.slice(0, count);
 };
 
 const RightSidebar = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile?.content);
   const [news, setNews] = useState([]);
+  const [displayedNews, setDisplayedNews] = useState([]);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     dispatch(getProfile());
 
     const loadNews = async () => {
       const fetchedNews = await fetchNews();
-      const randomNews = getRandomNews(fetchedNews, 6);
+      const randomNews = getRandomNews(fetchedNews, fetchedNews.length);
       setNews(randomNews);
+      setDisplayedNews(randomNews.slice(0, 6));
+      setIndex(6);
     };
 
     loadNews();
   }, [dispatch]);
+
+  const loadMoreNews = () => {
+    const newIndex = index + 5;
+    setDisplayedNews((prevNews) => [...prevNews, ...news.slice(index, newIndex)]);
+    setIndex(newIndex);
+  };
 
   const formatDate = (dateString) => {
     const options = {
@@ -66,7 +76,7 @@ const RightSidebar = () => {
         <h6 className="text-secondary">a cura di LinkedIn notizie</h6>
 
         <Col>
-          {news.map((item) => (
+          {displayedNews.map((item) => (
             <div key={item._id}>
               <p style={{ position: "relative", top: "20px" }}>{item.text}</p>
               <span style={{ fontSize: "10px" }}>{formatDate(item.createdAt)}</span>
@@ -74,7 +84,7 @@ const RightSidebar = () => {
             </div>
           ))}
         </Col>
-        <Button className="bg-transparent border-0 text-dark p-0 mt-3">
+        <Button className="bg-transparent border-0 text-dark p-0 mt-3" onClick={loadMoreNews}>
           Vedi altro <CaretDownFill></CaretDownFill>
         </Button>
 
