@@ -9,6 +9,7 @@ import ExperienceForm from "./components/ExperienceForm";
 import ExperienceList from "./components/ExperienceList";
 import Lavoro from "./components/Lavoro";
 import UserSearch from "./components/SearchProfile";
+import ProfileSearched from "./components/ProfileSearched";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/lavoro" element={<Lavoro />} />
           <Route path="/search" element={<UserSearch />} />
+          <Route path="/profile/:id" element={<ProfileSearched />} />
           <Route
             path="/experiences"
             element={
