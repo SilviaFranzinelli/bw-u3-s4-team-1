@@ -132,7 +132,7 @@ const MainContent = () => {
                     {post.user._id === profile._id && ( //un'altro controllo per confrontare l'id profilo con quello dell'user del commento,così i button modifica ed elimina si visualizzeranno solo se il commento è il tuo
                       <>
                         <Button onClick={() => handleDelete(post.user._id, post._id)}>Elimina</Button>
-                        <Button onClick={(e) => handleOpenModal(e, post)}>Modifica</Button>
+                        <Button onClick={(e) => handleOpenModal(e, post)} className="ms-2">Modifica</Button>
                       </>
                     )}
 
