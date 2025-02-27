@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Modal } from "react-bootstrap";
 import { fetchModPosts } from "../redux/actions/ModPost";
 import { fetchPosts } from "../redux/reducers/postSlice";
+import { fetchDeletePost } from "../redux/actions/deletePost";
+import { Trash } from "react-bootstrap-icons";
 
 function ModMyPosts({ show, onClose, postId }) {
   const dispatch = useDispatch();
   const post = useSelector(
     (state) => state.posts.content.find((p) => p._id === postId) //Trova il post dall'ID
   );
+  const profile = useSelector((state) => state.profile?.content);
   console.log("Show:", show);
   console.log("PostId:", postId);
 
@@ -36,6 +39,16 @@ function ModMyPosts({ show, onClose, postId }) {
     dispatch(fetchPosts());
   };
 
+  const handleDelete = (idUser, idPost) => {
+    /* console.log(id); */
+    if (idUser === profile._id) {
+      //confronta l'id dell'user del commento con l'id del nostro user,se è lo stesso fa le dispatch
+      confirm("Conferma per eliminare il tuo commento!");
+      dispatch(fetchDeletePost(idPost)); //passo l'id del post per la modifica
+      dispatch(fetchPosts()); //richiamo la fetch dei post
+    }
+  };
+
   if (!post) return null;
 
   return (
@@ -49,13 +62,18 @@ function ModMyPosts({ show, onClose, postId }) {
             <Form.Label>Modifica il tuo post:</Form.Label>
             <Form.Control type="text" value={updatedText} onChange={handleChange} />
           </Form.Group>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={onClose}>
-              Annulla
+          <Modal.Footer className="d-flex justify-content-between px-0">
+            <Button className="btn-danger" onClick={() => handleDelete(post.user._id, post._id)}>
+              <Trash />
             </Button>
-            <Button variant="primary" type="submit">
-              Salva
-            </Button>
+            <div>
+              <Button className="me-1" variant="secondary" onClick={onClose}>
+                Annulla
+              </Button>
+              <Button variant="primary" type="submit">
+                Salva
+              </Button>
+            </div>
           </Modal.Footer>
         </Form>
       </Modal.Body>

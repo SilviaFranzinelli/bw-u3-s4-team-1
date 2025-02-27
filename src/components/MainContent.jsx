@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchPosts, loadMorePosts } from "../redux/reducers/postSlice";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { Heart, Chat, Share, Send } from "react-bootstrap-icons"; // Import delle icone
+import { Heart, Chat, Share, Send, Pen } from "react-bootstrap-icons"; // Import delle icone
 import { newPost } from "../redux/actions/newPost";
 import { getProfile } from "../redux/actions";
-import { fetchDeletePost } from "../redux/actions/deletePost";
+
 import ModMyPosts from "./ModMyPosts";
 
 const MainContent = () => {
@@ -49,16 +49,6 @@ const MainContent = () => {
     await dispatch(newPost(newPosts)); //passo il nuovo testo per il post al body nell'action
     setText("");
     dispatch(fetchPosts());
-  };
-
-  const handleDelete = (idUser, idPost) => {
-    /* console.log(id); */
-    if (idUser === profile._id) {
-      //confronta l'id dell'user del commento con l'id del nostro user,se è lo stesso fa le dispatch
-      confirm("Conferma per eliminare il tuo commento!");
-      dispatch(fetchDeletePost(idPost)); //passo l'id del post per la modifica
-      dispatch(fetchPosts()); //richiamo la fetch dei post
-    }
   };
 
   const handleOpenModal = (event, postToEdit) => {
@@ -124,11 +114,17 @@ const MainContent = () => {
                     />
                   </Col>
                   <Col md={11}>
-                    <p style={{ fontWeight: "600" }}>
-                      {post.user.name}
-                      <span> {post.user.surname}</span>
-                    </p>
-
+                    <div className="d-flex justify-content-between">
+                      <p style={{ fontWeight: "600" }}>
+                        {post.user.name}
+                        <span> {post.user.surname}</span>
+                      </p>
+                      {post.user._id === profile._id && ( //un'altro controllo per confrontare l'id profilo con quello dell'user del commento,così i button modifica ed elimina si visualizzeranno solo se il commento è il tuo
+                        <>
+                          <Pen onClick={(e) => handleOpenModal(e, post)} className="ms-2 btn-success cursore"></Pen>
+                        </>
+                      )}
+                    </div>
                     <p className="text-muted" style={{ fontSize: "12px" }}>
                       {new Date(post.createdAt).toLocaleDateString()}
                     </p>
@@ -137,14 +133,6 @@ const MainContent = () => {
                     <p>
                       <strong>{post.user.title}</strong>
                     </p>
-                    {post.user._id === profile._id && ( //un'altro controllo per confrontare l'id profilo con quello dell'user del commento,così i button modifica ed elimina si visualizzeranno solo se il commento è il tuo
-                      <>
-                        <Button onClick={() => handleDelete(post.user._id, post._id)}>Elimina</Button>
-                        <Button onClick={(e) => handleOpenModal(e, post)} className="ms-2">
-                          Modifica
-                        </Button>
-                      </>
-                    )}
 
                     {/* Sezione interazioni con icone */}
                     <Row className="mt-3">
