@@ -10,3 +10,6 @@ body {
 .cursore {
   cursor: pointer;
 }
+.profileSearch {
+  text-decoration: none;
+}

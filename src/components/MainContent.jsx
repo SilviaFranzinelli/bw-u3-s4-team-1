@@ -124,8 +124,7 @@ const MainContent = () => {
                       {new Date(post.createdAt).toLocaleDateString()}
                     </p>
                     <p>{post.text}</p>
-                    {/* Visualizza la bio, title e immagine del profilo */}
-                    <p>{post.user.bio}</p>
+
                     <p>
                       <strong>{post.user.title}</strong>
                     </p>

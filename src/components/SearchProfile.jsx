@@ -32,10 +32,9 @@ const UserSearch = () => {
       <h3>Ricerca Utente</h3>
       <Form>
         <Form.Group>
-          <Form.Label>Nome</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Inserisci il nome"
+            placeholder="Inserisci il nome..."
             value={searchName}
             onChange={(e) => setSearchName(e.target.value)}
           />
@@ -46,9 +45,9 @@ const UserSearch = () => {
         {filteredUsers.length > 0 ? (
           filteredUsers.map((user) => (
             <ListGroup.Item key={user._id}>
-              <Link to={`/profile/${user._id}`}>
+              <Link className="profileSearch" to={`/profile/${user._id}`}>
                 <strong>
-                  {user.name} {user.surname} - <span className="text-primary"> {user.title}</span>
+                  {user.name} {user.surname} - <span className="text-dark"> {user.title}</span>
                 </strong>
               </Link>
             </ListGroup.Item>
