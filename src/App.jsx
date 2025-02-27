@@ -7,9 +7,13 @@ import Profile from "./components/Profile";
 import Home from "./components/Home";
 import ExperienceForm from "./components/ExperienceForm";
 import ExperienceList from "./components/ExperienceList";
+<<<<<<< HEAD
 import Lavoro from "./components/Lavoro";
 import UserSearch from "./components/SearchProfile";
 import ProfileSearched from "./components/ProfileSearched";
+=======
+import JobResults from "./components/JobResults"; // Importa il componente JobResults
+>>>>>>> 0c0acca (lavoro)
 
 function App() {
   return (
@@ -19,9 +23,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
+<<<<<<< HEAD
           <Route path="/lavoro" element={<Lavoro />} />
           <Route path="/search" element={<UserSearch />} />
           <Route path="/profile/:id" element={<ProfileSearched />} />
+=======
+          <Route path="/lavoro" element={<JobResults />} /> {/* Modifica questa route */}
+>>>>>>> 0c0acca (lavoro)
           <Route
             path="/experiences"
             element={
