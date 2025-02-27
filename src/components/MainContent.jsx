@@ -97,7 +97,7 @@ const MainContent = () => {
                 <form onSubmit={handleSubmit}>
                   <input
                     className="border border-secondary text-dark bg-light rounded-5 text-start py-2 ms-2 "
-                    style={{ width: "100%" }}
+                    style={{ width: "100%", paddingLeft: "1rem" }}
                     placeholder="Crea un post"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
@@ -116,7 +116,7 @@ const MainContent = () => {
                 <Row>
                   {console.log(post.user._id)}
                   <Col md={1}>
-                    <img src={post.user.image} alt="Post User" className="rounded-circle" style={{ width: "40px" }} />
+                    <img src={post.user.image} alt="Post User" className="rounded-circle" style={{ width: "40px", height:"40px" }} />
                   </Col>
                   <Col md={11}>
                     <p style={{ fontWeight: "600" }}>{post.user.username}</p>

@@ -77,8 +77,8 @@ function Topbar() {
             <Nav.Link
               as={Link}
               to="/search"
-              className={`d-flex flex-column align-items-center me-3 ${activeIcon === "lavoro" ? "active" : ""}`}
-              onClick={() => handleIconClick("lavoro")}
+              className={`d-flex flex-column align-items-center me-3 ${activeIcon === "Rete" ? "active" : ""}`}
+              onClick={() => handleIconClick("Rete")}
             >
               <PeopleFill className="fs-3" /> Rete
             </Nav.Link>
@@ -93,7 +93,7 @@ function Topbar() {
 
             <Nav.Link
               as={Link}
-              to="#Messaggistica"
+              to="/messaggistica" // Cambiato il link da #Messaggistica a /messaggistica
               className={`d-flex flex-column align-items-center mx-2 ${activeIcon === "messaggistica" ? "active" : ""}`}
               onClick={() => handleIconClick("messaggistica")}
             >
