@@ -1,0 +1,64 @@
+/* Navbar di stile LinkedIn */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand svg {
+  fill: #0073b1; /* Colore LinkedIn */
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  margin-right: 20px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #0073b1; /* Colore LinkedIn */
+}
+
+.nav-link.active {
+  color: #0073b1;
+}
+
+.nav-link.profile {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.profile-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.profile-text {
+  font-weight: bold;
+}
+
+.premium {
+  font-weight: bold;
+  color: #0073b1;
+}
+
+.premium:hover {
+  color: #005582;
+}
