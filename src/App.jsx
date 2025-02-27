@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import ExperienceForm from "./components/ExperienceForm";
 import ExperienceList from "./components/ExperienceList";
 import Lavoro from "./components/Lavoro";
+import UserSearch from "./components/SearchProfile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/lavoro" element={<Lavoro />} />
+          <Route path="/search" element={<UserSearch />} />
           <Route
             path="/experiences"
             element={

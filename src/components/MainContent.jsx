@@ -41,12 +41,12 @@ const MainContent = () => {
 
     console.log("handleSubmit");
 
-    if (!text) return;
+    if (!text) return; //se il testo non è inserito non ritorna niente
     const newPosts = {
       text,
     };
 
-    await dispatch(newPost(newPosts));
+    await dispatch(newPost(newPosts)); //passo il nuovo testo per il post al body nell'action
     setText("");
     dispatch(fetchPosts());
   };
@@ -54,15 +54,17 @@ const MainContent = () => {
   const handleDelete = (idUser, idPost) => {
     /* console.log(id); */
     if (idUser === profile._id) {
+      //confronta l'id dell'user del commento con l'id del nostro user,se è lo stesso fa le dispatch
       confirm("Conferma per eliminare il tuo commento!");
-      dispatch(fetchDeletePost(idPost));
-      dispatch(fetchPosts());
+      dispatch(fetchDeletePost(idPost)); //passo l'id del post per la modifica
+      dispatch(fetchPosts()); //richiamo la fetch dei post
     }
   };
 
   const handleOpenModal = (event, postToEdit) => {
+    //apre il modale per la modifica del post
     console.log("Post da modificare:", postToEdit);
-    setSelectedPost(postToEdit._id);
+    setSelectedPost(postToEdit._id); //passo id del post per la fetch
     setShowModal(true);
   };
 
@@ -127,7 +129,7 @@ const MainContent = () => {
                     <p>
                       <strong>{post.user.title}</strong>
                     </p>
-                    {post.user._id === profile._id && (
+                    {post.user._id === profile._id && ( //un'altro controllo per confrontare l'id profilo con quello dell'user del commento,così i button modifica ed elimina si visualizzeranno solo se il commento è il tuo
                       <>
                         <Button onClick={() => handleDelete(post.user._id, post._id)}>Elimina</Button>
                         <Button onClick={(e) => handleOpenModal(e, post)}>Modifica</Button>
