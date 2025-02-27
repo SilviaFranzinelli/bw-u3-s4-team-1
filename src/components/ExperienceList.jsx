@@ -53,11 +53,12 @@ const ExperienceList = () => {
               <Card.Body className="d-flex">
                 <div className="me-3">
                   <img
-                    src={exp.companyLogo || "https://via.placeholder.com/50"}
+                    src={exp.companyLogo || "src/assets/images.JPG"}
                     alt={exp.company}
                     className="rounded"
                     width="50"
                     height="50"
+                    style={{ objectFit: "contain" }} // Assicura che l'immagine non si distorca
                   />
                 </div>
                 <div className="flex-grow-1">
@@ -69,12 +70,7 @@ const ExperienceList = () => {
                   <p className="small">{exp.description}</p>
                 </div>
                 <div className="d-flex align-items-start">
-                  <Pen
-                    size={20}
-                    className="text-dark cursore"
-                    style={{ position: "relative", left: "15px" }}
-                    onClick={() => handleEdit(exp)}
-                  />
+                  <Pen size={20} className="text-dark cursore" style={{ position: "relative", left: "15px" }} onClick={() => handleEdit(exp)} />
                 </div>
               </Card.Body>
             </Card>
