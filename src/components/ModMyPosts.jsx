@@ -54,7 +54,7 @@ function ModMyPosts({ show, onClose, postId }) {
   return (
     <Modal show={show} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Modifica Post</Modal.Title>
+        <Modal.Title>Il tuo post:</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
