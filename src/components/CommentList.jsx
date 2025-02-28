@@ -11,7 +11,7 @@ const CommentList = ({ postId }) => {
 
   useEffect(() => {
     if (postId) {
-      console.log(`📡 Fetching commenti per il post con ID: ${postId}`);
+      console.log(`Fetching commenti per il post con ID: ${postId}`);
       dispatch(fetchComments(postId));
     }
   }, [dispatch, postId]);
