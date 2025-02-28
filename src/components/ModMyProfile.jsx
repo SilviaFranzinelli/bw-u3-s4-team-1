@@ -55,6 +55,10 @@ function ModMyProfile({ show, onClose }) {
             <Form.Control type="email" name="email" value={localProfile.email} onChange={handleChange} />
           </Form.Group>
           <Form.Group className="mb-3">
+            <Form.Label>Add image</Form.Label>
+            <Form.Control type="text" name="image" value={localProfile.image} onChange={handleChange} />
+          </Form.Group>
+          <Form.Group className="mb-3">
             <Form.Label>Professione</Form.Label>
             <Form.Control type="text" name="title" value={localProfile.title} onChange={handleChange} />
           </Form.Group>
