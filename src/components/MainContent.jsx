@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts, loadMorePosts } from "../redux/reducers/postSlice";
-import { fetchComments } from "../redux/actions/comment"; // ✅ Import fetch dei commenti
+import { fetchComments } from "../redux/actions/comment"; 
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Heart, HeartFill, Chat, Share, Send, Pen } from "react-bootstrap-icons";
 import { newPost } from "../redux/actions/newPost";
 import { getProfile } from "../redux/actions";
 import CommentInput from "./CommentInput";
 import ModMyPosts from "./ModMyPosts";
-import CommentList from "./CommentList"; // ✅ Import della lista commenti
+import CommentList from "./CommentList";
 
 const MainContent = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const MainContent = () => {
   const [showModal, setShowModal] = useState(false);
   const profile = useSelector((state) => state.profile?.content);
   const { content: posts, status, visiblePostsCount } = useSelector((state) => state.posts);
-  const comments = useSelector((state) => state.comments || {}); // ✅ Prende i commenti dallo store
+  const comments = useSelector((state) => state.comments || {}); 
   const [likes, setLikes] = useState({});
   const [isLiked, setIsLiked] = useState({});
   const [showCommentInput, setShowCommentInput] = useState({});
@@ -73,7 +73,7 @@ const MainContent = () => {
       ...prev,
       [postId]: !prev[postId],
     }));
-    dispatch(fetchComments(postId)); // 🔥 Fetch dei commenti al primo click
+    dispatch(fetchComments(postId)); 
   };
 
   return (
@@ -155,7 +155,6 @@ const MainContent = () => {
 
                     {showCommentInput[post._id] && <CommentInput postId={post._id} />}
 
-                    {/* ✅ Mostra gli ultimi 5 commenti */}
                     {comments[post._id] && comments[post._id].length > 0 && (
                       <CommentList comments={comments[post._id].slice(-5)} />
                     )}

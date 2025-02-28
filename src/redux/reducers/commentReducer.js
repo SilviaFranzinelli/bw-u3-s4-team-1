@@ -7,14 +7,14 @@ const commentReducer = (state = initialState, action) => {
     case FETCH_COMMENTS:
       return {
         ...state,
-        [action.payload.postId]: action.payload.comments || [], // ✅ Evita undefined
+        [action.payload.postId]: action.payload.comments || [],
       };
 
     case ADD_COMMENT:
       return {
         ...state,
         [action.payload.postId]: [
-          ...(state[action.payload.postId] || []), // ✅ Evita undefined
+          ...(state[action.payload.postId] || []), 
           action.payload.comment,
         ],
       };
