@@ -7,7 +7,7 @@ import { Button, ListGroup } from "react-bootstrap";
 const CommentList = ({ postId }) => {
   const dispatch = useDispatch();
 
-  // ✅ Recupera i commenti dallo stato Redux
+
   const comments = useSelector((state) => state.comments[postId]) || [];
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const CommentList = ({ postId }) => {
       ) : (
         comments.slice(-5).map(
           (
-            comment // 🔥 Mostra solo gli ultimi 5 commenti
+            comment
           ) => (
             <ListGroup.Item key={comment._id} className="d-flex justify-content-between align-items-center">
               <div>

@@ -13,7 +13,7 @@ const CommentInput = ({ postId }) => {
 
     console.log(`📩 Invio commento "${commentText}" per il post ID: ${postId}`);
     dispatch(addComment(postId, commentText));
-    setCommentText(""); // 🔥 Pulisce l'input dopo l'invio
+    setCommentText(""); 
   };
 
   return (

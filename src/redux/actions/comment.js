@@ -40,13 +40,13 @@ export const addComment = (postId, commentText) => async (dispatch) => {
 
     const newComment = {
       comment: commentText,
-      rate: "5", // Il rating non viene usato, mettiamo un valore fisso
-      elementId: postId, // 🔥 Assicuriamoci che sia `elementId` e non `postId`
+      rate: "5",
+      elementId: postId,
     };
 
     const response = await fetch(API_URL, {
       method: "POST",
-      headers: AUTH_HEADER, // ✅ Usa AUTH_HEADER
+      headers: AUTH_HEADER,
       body: JSON.stringify(newComment),
     });
 
@@ -55,13 +55,13 @@ export const addComment = (postId, commentText) => async (dispatch) => {
     const addedComment = await response.json();
     dispatch({ type: ADD_COMMENT, payload: { postId, comment: addedComment } });
 
-    dispatch(fetchComments(postId)); // ✅ Ricarica i commenti aggiornati
+    dispatch(fetchComments(postId)); 
   } catch (error) {
     console.error("Errore nell'aggiunta del commento:", error);
   }
 };
 
-// ✅ Eliminazione di un commento
+
 export const deleteComment = (commentId, postId) => async (dispatch) => {
   try {
     if (!commentId || !postId) throw new Error("Dati commento non validi");
@@ -73,7 +73,7 @@ export const deleteComment = (commentId, postId) => async (dispatch) => {
 
     if (!response.ok) throw new Error("Errore nella cancellazione del commento");
 
-    dispatch(fetchComments(postId)); // ✅ Dopo aver eliminato il commento, ricarichiamo i commenti
+    dispatch(fetchComments(postId)); 
   } catch (error) {
     console.error("Errore nella cancellazione del commento:", error);
   }
