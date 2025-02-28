@@ -1,26 +1,30 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts, loadMorePosts } from "../redux/reducers/postSlice";
+import { fetchComments } from "../redux/actions/comment"; // ✅ Import fetch dei commenti
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { Heart, HeartFill, Chat, Share, Send, Pen } from "react-bootstrap-icons"; // Import delle icone
+import { Heart, HeartFill, Chat, Share, Send, Pen } from "react-bootstrap-icons";
 import { newPost } from "../redux/actions/newPost";
 import { getProfile } from "../redux/actions";
-
+import CommentInput from "./CommentInput";
 import ModMyPosts from "./ModMyPosts";
+import CommentList from "./CommentList"; // ✅ Import della lista commenti
 
 const MainContent = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
   const [selectedPost, setSelectedPost] = useState(null);
-  const [showModal, setShowModal] = useState(false); // Stato per mostrare il modal
+  const [showModal, setShowModal] = useState(false);
   const profile = useSelector((state) => state.profile?.content);
   const { content: posts, status, visiblePostsCount } = useSelector((state) => state.posts);
+  const comments = useSelector((state) => state.comments || {}); // ✅ Prende i commenti dallo store
   const [likes, setLikes] = useState({});
   const [isLiked, setIsLiked] = useState({});
+  const [showCommentInput, setShowCommentInput] = useState({});
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchPosts()); // Carica i post solo se non sono stati ancora caricati
+      dispatch(fetchPosts());
     }
   }, [dispatch, status]);
 
@@ -29,39 +33,28 @@ const MainContent = () => {
   }, [dispatch]);
 
   const handleLoadMore = () => {
-    dispatch(loadMorePosts()); // Aumenta il numero di post visibili
+    dispatch(loadMorePosts());
   };
 
-  // Filtra i post per includere solo quelli con tutti i campi necessari
   const filteredPosts = posts.filter((post) => post.text);
-
-  // Slice dei post da visualizzare
   const visiblePosts = filteredPosts.reverse().slice(0, visiblePostsCount);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("handleSubmit");
-
-    if (!text) return; //se il testo non è inserito non ritorna niente
-    const newPosts = {
-      text,
-    };
-
-    await dispatch(newPost(newPosts)); //passo il nuovo testo per il post al body nell'action
+    if (!text) return;
+    const newPosts = { text };
+    await dispatch(newPost(newPosts));
     setText("");
     dispatch(fetchPosts());
   };
 
   const handleOpenModal = (event, postToEdit) => {
-    //apre il modale per la modifica del post
-    console.log("Post da modificare:", postToEdit);
-    setSelectedPost(postToEdit._id); //passo id del post per la fetch
+    setSelectedPost(postToEdit._id);
     setShowModal(true);
   };
 
   const handleCloseModal = () => {
-    setShowModal(false); // Chiudi il modal
+    setShowModal(false);
   };
 
   const toggleLike = (postId) => {
@@ -75,23 +68,23 @@ const MainContent = () => {
     }));
   };
 
+  const handleToggleCommentInput = (postId) => {
+    setShowCommentInput((prev) => ({
+      ...prev,
+      [postId]: !prev[postId],
+    }));
+    dispatch(fetchComments(postId)); // 🔥 Fetch dei commenti al primo click
+  };
+
   return (
     <>
       <Container className="bg-light border rounded-2">
-        {/* Altre sezioni del layout */}
         <Container className="mt-3">
           <Container className="border mb-2 bg-body py-2">
             <Row>
               <Col className="mt-1" md={1}>
                 {profile ? (
-                  <>
-                    <img
-                      src={profile.image}
-                      alt="Profile"
-                      className="rounded-circle border border-white"
-                      style={{ width: "50px" }}
-                    />
-                  </>
+                  <img src={profile.image} alt="Profile" className="rounded-circle border border-white" style={{ width: "50px" }} />
                 ) : (
                   <p className="text-muted">Caricamento profilo...</p>
                 )}
@@ -99,16 +92,17 @@ const MainContent = () => {
               <Col md={11} className="mt-2">
                 <form onSubmit={handleSubmit}>
                   <input
-                    className="border border-secondary text-dark bg-light rounded-5 text-start py-2 ms-2 "
+                    className="border border-secondary text-dark bg-light rounded-5 text-start py-2 ms-2"
                     style={{ width: "100%", paddingLeft: "1rem" }}
                     placeholder="Crea un post"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
-                  ></input>
+                  />
                 </form>
               </Col>
             </Row>
           </Container>
+
           {status === "loading" ? (
             <p>Caricamento in corso...</p>
           ) : status === "failed" ? (
@@ -117,26 +111,15 @@ const MainContent = () => {
             visiblePosts.map((post) => (
               <Container key={post._id} className="bg-white border rounded-2 mb-3 p-3">
                 <Row>
-                  {console.log(post.user._id)}
                   <Col md={1}>
-                    <img
-                      src={post.user.image}
-                      alt="Post User"
-                      className="rounded-circle"
-                      style={{ width: "40px", height: "40px" }}
-                    />
+                    <img src={post.user.image} alt="Post User" className="rounded-circle" style={{ width: "40px", height: "40px" }} />
                   </Col>
                   <Col md={11}>
                     <div className="d-flex justify-content-between">
                       <p style={{ fontWeight: "600" }}>
-                        {post.user.name}
-                        <span> {post.user.surname}</span>
+                        {post.user.name} <span> {post.user.surname}</span>
                       </p>
-                      {post.user._id === profile._id && ( //un'altro controllo per confrontare l'id profilo con quello dell'user del commento,così i button modifica ed elimina si visualizzeranno solo se il commento è il tuo
-                        <>
-                          <Pen onClick={(e) => handleOpenModal(e, post)} className="ms-2 btn-success cursore"></Pen>
-                        </>
-                      )}
+                      {post.user._id === profile._id && <Pen onClick={(e) => handleOpenModal(e, post)} className="ms-2 btn-success cursor-pointer" />}
                     </div>
                     <p className="text-muted" style={{ fontSize: "12px" }}>
                       {new Date(post.createdAt).toLocaleDateString()}
@@ -147,7 +130,6 @@ const MainContent = () => {
                       <strong>{post.user.title}</strong>
                     </p>
 
-                    {/* Sezione interazioni con icone */}
                     <Row className="mt-3">
                       <Col>
                         <Button variant="link" className="p-0" onClick={() => toggleLike(post._id)}>
@@ -160,26 +142,32 @@ const MainContent = () => {
                         <span className="ms-1 p-0">{likes[post._id] || 0}</span>
                       </Col>
                       <Col>
-                        <Chat className="text-primary" style={{ fontSize: "18px" }} /> {/* Icona commento */}
-                        <span className="ms-1">1 commento</span>
+                        <Chat className="text-primary cursor-pointer" style={{ fontSize: "18px" }} onClick={() => handleToggleCommentInput(post._id)} />
+                        <span className="ms-1">Commenta</span>
                       </Col>
                       <Col>
-                        <Share className="text-warning" style={{ fontSize: "18px" }} /> {/* Icona condivisione */}
-                        <span className="ms-1">1 diffusione</span>
+                        <Share className="text-warning" style={{ fontSize: "18px" }} />
                       </Col>
                       <Col>
-                        <Send className="text-success" style={{ fontSize: "18px" }} /> {/* Icona invio */}
-                        <span className="ms-1">Invia</span>
+                        <Send className="text-success" style={{ fontSize: "18px" }} />
                       </Col>
                     </Row>
+
+                    {showCommentInput[post._id] && <CommentInput postId={post._id} />}
+
+                    {/* ✅ Mostra gli ultimi 5 commenti */}
+                    {comments[post._id] && comments[post._id].length > 0 && (
+                      <CommentList comments={comments[post._id].slice(-5)} />
+                    )}
                   </Col>
                 </Row>
               </Container>
             ))
           )}
         </Container>
+
         <ModMyPosts show={showModal} onClose={handleCloseModal} postId={selectedPost} />
-        {/* Bottone per caricare altri 20 post */}
+
         {filteredPosts.length > visiblePostsCount && (
           <Button onClick={handleLoadMore} className="mt-3">
             Visualizza altro

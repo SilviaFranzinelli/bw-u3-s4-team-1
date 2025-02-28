@@ -5,6 +5,7 @@ import getExperiencesReducers from "../reducers/experiencesReducers";
 import postSlice from "../reducers/postSlice"; // Import del reducer dei post
 import postReducer from "../reducers/newPost";
 import jobReducer from "../reducers/jobSlice"; // Aggiornato per il nuovo nome del file
+import commentsReducer from "../reducers/commentReducer";
 
 
 const rootReducer = combineReducers({
@@ -14,7 +15,7 @@ const rootReducer = combineReducers({
   posts: postSlice, // Aggiunto il reducer dei post
   myPost: postReducer,
   jobs: jobReducer, // Aggiunto il reducer dei lavori
-  
+  comment:commentsReducer
 });
 
 const store = configureStore({
