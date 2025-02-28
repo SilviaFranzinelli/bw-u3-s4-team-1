@@ -143,7 +143,7 @@ const MainContent = () => {
                       </Col>
                       <Col>
                         <Chat className="text-primary cursor-pointer" style={{ fontSize: "18px" }} onClick={() => handleToggleCommentInput(post._id)} />
-                        <span className="ms-1">Commenta</span>
+                        
                       </Col>
                       <Col>
                         <Share className="text-warning" style={{ fontSize: "18px" }} />
