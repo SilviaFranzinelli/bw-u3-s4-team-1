@@ -13,7 +13,7 @@ const AUTH_HEADER = {
 export const fetchComments = (postId) => async (dispatch) => {
   try {
     if (!postId) {
-      console.error("❌ ERRORE: postId è undefined o nullo");
+      console.error("postId è undefined o nullo");
       return;
     }
 

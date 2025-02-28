@@ -13,7 +13,8 @@ const commentReducer = (state = initialState, action) => {
     case ADD_COMMENT:
       return {
         ...state,
-        [action.payload.postId]: [
+        [action.payload.postId]: 
+        [
           ...(state[action.payload.postId] || []), 
           action.payload.comment,
         ],
