@@ -63,14 +63,8 @@ function Topbar() {
             <Col xs="auto">
               <Form.Group className="position-relative">
                 {/* <i className="bi bi-search position-absolute top-50 translate-middle-y bg-dark" style={{ left: "10px" }}></i> */}
-                <Search style={{position:"absolute", top:"10px", left:"170px"}}></Search>
-                <Form.Control
-                  type="text"
-                  placeholder="Cerca lavori..."
-                  className="pl-5"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  />
+                <Search style={{ position: "absolute", top: "10px", left: "170px" }}></Search>
+                <Form.Control type="text" placeholder="Cerca lavori..." className="pl-5" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
               </Form.Group>
             </Col>
             {/* <Col xs="auto">
@@ -125,7 +119,13 @@ function Topbar() {
               <BellFill className="fs-3" /> Notifiche
             </Nav.Link>
             <CompanyDropdown className="p-8 mt-3" />
-            <NavDropdown title="Profilo" id="basic-nav-dropdown" className="mt-2">
+            <img
+              className="profileImage"
+              src={profile.image}
+              alt="profile"
+              style={{ border: "solid 5px white", borderRadius: "50%", width: "50px", height:"50px", marginTop: "5px" }}
+            />
+            <NavDropdown title={profile.name} id="basic-nav-dropdown" className="mt-2">
               <NavDropdown.Item as={Link} to="/profile" className="d-flex flex-column align-items-center">
                 <img
                   className="profileImage"
