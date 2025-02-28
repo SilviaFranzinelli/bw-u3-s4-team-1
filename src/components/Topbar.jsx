@@ -63,8 +63,14 @@ function Topbar() {
             <Col xs="auto">
               <Form.Group className="position-relative">
                 {/* <i className="bi bi-search position-absolute top-50 translate-middle-y bg-dark" style={{ left: "10px" }}></i> */}
-                <Search style={{ position: "absolute", top: "10px", left: "170px" }}></Search>
-                <Form.Control type="text" placeholder="Cerca lavori..." className="pl-5" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                <Search style={{position:"absolute", top:"10px", left:"170px"}}></Search>
+                <Form.Control
+                  type="text"
+                  placeholder="Cerca lavori..."
+                  className="pl-5"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  />
               </Form.Group>
             </Col>
             {/* <Col xs="auto">
@@ -96,7 +102,7 @@ function Topbar() {
             <Nav.Link
               as={Link}
               to="/lavoro"
-              className={`d-flex flex-column align-items-center me-3 ${activeIcon === "lavoro" ? "active" : ""}`}
+              className={`d-flex flex-column align-items-center  ${activeIcon === "lavoro" ? "active" : ""}`}
               onClick={() => handleIconClick("lavoro")}
             >
               <BriefcaseFill className="fs-3" /> Lavoro
@@ -105,7 +111,7 @@ function Topbar() {
             <Nav.Link
               as={Link}
               to="/messaggistica" // Cambiato il link da #Messaggistica a /messaggistica
-              className={`d-flex flex-column align-items-center mx-2 ${activeIcon === "messaggistica" ? "active" : ""}`}
+              className={`d-flex flex-column align-items-center  ${activeIcon === "messaggistica" ? "active" : ""}`}
               onClick={() => handleIconClick("messaggistica")}
             >
               <ChatDotsFill className="fs-3" /> Messaggistica
@@ -119,13 +125,7 @@ function Topbar() {
               <BellFill className="fs-3" /> Notifiche
             </Nav.Link>
             <CompanyDropdown className="p-8 mt-3" />
-            <img
-              className="profileImage"
-              src={profile.image}
-              alt="profile"
-              style={{ border: "solid 5px white", borderRadius: "50%", width: "50px", height:"50px", marginTop: "5px" }}
-            />
-            <NavDropdown title={profile.name} id="basic-nav-dropdown" className="mt-2">
+            <NavDropdown title="Profilo" id="basic-nav-dropdown" className="mt-2">
               <NavDropdown.Item as={Link} to="/profile" className="d-flex flex-column align-items-center">
                 <img
                   className="profileImage"

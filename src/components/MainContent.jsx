@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts, loadMorePosts } from "../redux/reducers/postSlice";
-import { fetchComments } from "../redux/actions/comment"; 
+import { fetchComments } from "../redux/actions/comment";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { Heart, HeartFill, Chat, Share, Send, Pen } from "react-bootstrap-icons";
+import {
+  Heart,
+  HeartFill,
+  Chat,
+  Share,
+  Send,
+  Pen,
+  Image,
+  BlockquoteLeft,
+  FastForwardBtnFill,
+} from "react-bootstrap-icons";
 import { newPost } from "../redux/actions/newPost";
 import { getProfile } from "../redux/actions";
 import CommentInput from "./CommentInput";
@@ -17,7 +27,7 @@ const MainContent = () => {
   const [showModal, setShowModal] = useState(false);
   const profile = useSelector((state) => state.profile?.content);
   const { content: posts, status, visiblePostsCount } = useSelector((state) => state.posts);
-  const comments = useSelector((state) => state.comments || {}); 
+  const comments = useSelector((state) => state.comments || {});
   const [likes, setLikes] = useState({});
   const [isLiked, setIsLiked] = useState({});
   const [showCommentInput, setShowCommentInput] = useState({});
@@ -73,23 +83,28 @@ const MainContent = () => {
       ...prev,
       [postId]: !prev[postId],
     }));
-    dispatch(fetchComments(postId)); 
+    dispatch(fetchComments(postId));
   };
 
   return (
     <>
       <Container className="bg-light border rounded-2">
         <Container className="mt-3">
-          <Container className="border mb-2 bg-body py-2">
+          <Container className="border mb-2 bg-body py-2 rounded-2">
             <Row>
               <Col className="mt-1" md={1}>
                 {profile ? (
-                  <img src={profile.image} alt="Profile" className="rounded-circle border border-white" style={{ width: "50px" }} />
+                  <img
+                    src={profile.image}
+                    alt="Profile"
+                    className="rounded-circle border border-white"
+                    style={{ width: "50px" }}
+                  />
                 ) : (
                   <p className="text-muted">Caricamento profilo...</p>
                 )}
               </Col>
-              <Col md={11} className="mt-2">
+              <Col md={11} className="mt-2 ">
                 <form onSubmit={handleSubmit}>
                   <input
                     className="border border-secondary text-dark bg-light rounded-5 text-start py-2 ms-2"
@@ -101,6 +116,18 @@ const MainContent = () => {
                 </form>
               </Col>
             </Row>
+            <Container className="d-flex justify-content-around mt-3 ms-3">
+              <p className="cursore">
+                <FastForwardBtnFill /> Video
+              </p>
+              <p className="cursore">
+                <Image /> Foto
+              </p>
+              <p className="cursore">
+                <BlockquoteLeft />
+                Scrivi un articolo
+              </p>
+            </Container>
           </Container>
 
           {status === "loading" ? (
@@ -112,14 +139,21 @@ const MainContent = () => {
               <Container key={post._id} className="bg-white border rounded-2 mb-3 p-3">
                 <Row>
                   <Col md={1}>
-                    <img src={post.user.image} alt="Post User" className="rounded-circle" style={{ width: "40px", height: "40px" }} />
+                    <img
+                      src={post.user.image}
+                      alt="Post User"
+                      className="rounded-circle"
+                      style={{ width: "40px", height: "40px" }}
+                    />
                   </Col>
                   <Col md={11}>
                     <div className="d-flex justify-content-between">
                       <p style={{ fontWeight: "600" }}>
                         {post.user.name} <span> {post.user.surname}</span>
                       </p>
-                      {post.user._id === profile._id && <Pen onClick={(e) => handleOpenModal(e, post)} className="ms-2 btn-success cursor-pointer" />}
+                      {post.user._id === profile._id && (
+                        <Pen onClick={(e) => handleOpenModal(e, post)} className="ms-2 btn-success cursor-pointer" />
+                      )}
                     </div>
                     <p className="text-muted" style={{ fontSize: "12px" }}>
                       {new Date(post.createdAt).toLocaleDateString()}
@@ -142,8 +176,11 @@ const MainContent = () => {
                         <span className="ms-1 p-0">{likes[post._id] || 0}</span>
                       </Col>
                       <Col>
-                        <Chat className="text-primary cursor-pointer" style={{ fontSize: "18px" }} onClick={() => handleToggleCommentInput(post._id)} />
-                        
+                        <Chat
+                          className="text-primary cursor-pointer"
+                          style={{ fontSize: "18px" }}
+                          onClick={() => handleToggleCommentInput(post._id)}
+                        />
                       </Col>
                       <Col>
                         <Share className="text-warning" style={{ fontSize: "18px" }} />
