@@ -4,6 +4,11 @@ import { Col, Container, Form, Nav, Navbar, NavDropdown, Row } from "react-boots
 import { Link } from "react-router-dom";
 import { BellFill, BriefcaseFill, ChatDotsFill, HouseDoorFill, PeopleFill, Search } from "react-bootstrap-icons";
 import CompanyDropdown from "./CompanyDropdown";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getProfile } from "../redux/actions";
+
 
 function Topbar() {
   const [activeIcon, setActiveIcon] = useState(null);
@@ -11,6 +16,17 @@ function Topbar() {
   const [category] = useState(""); // Stato per la categoria
   const [company] = useState(""); // Stato per l'azienda
   const navigate = useNavigate(); // Hook per navigare
+
+
+    const dispatch = useDispatch();
+    const profile = useSelector((state) => state.profile.content);
+
+      useEffect(() => {
+        dispatch(getProfile()); // Fetch del profilo quando il componente viene montato
+      }, [dispatch]);
+     if (!profile) {
+       return <p>Caricamento...</p>;
+     }
 
   const handleIconClick = (icon) => {
     setActiveIcon(icon);
@@ -47,14 +63,8 @@ function Topbar() {
             <Col xs="auto">
               <Form.Group className="position-relative">
                 {/* <i className="bi bi-search position-absolute top-50 translate-middle-y bg-dark" style={{ left: "10px" }}></i> */}
-                <Search style={{position:"absolute", top:"10px", left:"170px"}}></Search>
-                <Form.Control
-                  type="text"
-                  placeholder="Cerca lavori..."
-                  className="pl-5"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  />
+                <Search style={{ position: "absolute", top: "10px", left: "170px" }}></Search>
+                <Form.Control type="text" placeholder="Cerca lavori..." className="pl-5" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
               </Form.Group>
             </Col>
             {/* <Col xs="auto">
@@ -109,9 +119,21 @@ function Topbar() {
               <BellFill className="fs-3" /> Notifiche
             </Nav.Link>
             <CompanyDropdown className="p-8 mt-3" />
-            <NavDropdown title="Profilo" id="basic-nav-dropdown" className="mt-2">
+            <img
+              className="profileImage"
+              src={profile.image}
+              alt="profile"
+              style={{ border: "solid 5px white", borderRadius: "50%", width: "50px", height:"50px", marginTop: "5px" }}
+            />
+            <NavDropdown title={profile.name} id="basic-nav-dropdown" className="mt-2">
               <NavDropdown.Item as={Link} to="/profile" className="d-flex flex-column align-items-center">
-                Profilo
+                <img
+                  className="profileImage"
+                  src={profile.image}
+                  alt="profile"
+                  style={{ border: "solid 5px white", borderRadius: "50%", width: "60px", margin: "0" }}
+                />
+                {profile.name}
               </NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/settings" className="d-flex flex-column align-items-center">
                 Impostazioni
