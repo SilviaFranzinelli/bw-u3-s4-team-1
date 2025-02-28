@@ -11,7 +11,7 @@ const CommentInput = ({ postId }) => {
     e.preventDefault();
     if (!commentText.trim()) return;
 
-    console.log(`📩 Invio commento "${commentText}" per il post ID: ${postId}`);
+    console.log(`Invio commento "${commentText}" per il post ID: ${postId}`);
     dispatch(addComment(postId, commentText));
     setCommentText(""); 
   };
