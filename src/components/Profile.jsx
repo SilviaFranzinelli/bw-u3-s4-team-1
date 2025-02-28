@@ -47,7 +47,7 @@ function Profile() {
             <div className="position-absolute" style={{ marginTop: "50px" }}>
               <img
                 className="profileImage"
-                src={profile.image}
+                src="https://festivaldellatv.it/wp-content/uploads/2024/05/FTV23_SCOTTI-458x458.png"
                 alt="profile"
                 style={{ border: "solid 5px white", borderRadius: "50%" }}
               />

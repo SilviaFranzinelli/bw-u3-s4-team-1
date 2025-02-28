@@ -19,7 +19,12 @@ const LeftSidebar = () => {
         <Card.Body className="text-center " style={{ position: "relative", bottom: "50px", height: "120px" }}>
           {profile ? (
             <>
-              <img src={profile.image} alt="Profile" className="rounded-circle border border-white" style={{ width: "50px" }} />
+              <img
+                src="https://festivaldellatv.it/wp-content/uploads/2024/05/FTV23_SCOTTI-458x458.png"
+                alt="Profile"
+                className="rounded-circle border border-white"
+                style={{ width: "50px" }}
+              />
               <Card.Title className="mt-2">
                 {profile.name} {profile.surname}
               </Card.Title>
