@@ -63,7 +63,9 @@ const JobResults = () => {
                 </Col>
               ) : (
                 jobs.map((job) => (
-                  <Col md={12} key={job._id} className="mb-4">
+                  <Col md={4} key={job._id} className="mb-1">
+                    {" "}
+                    {/* Cambiato md={12} a md={4} */}
                     <JobCard job={job} /> {/* Componente per visualizzare ogni singola offerta */}
                   </Col>
                 ))
