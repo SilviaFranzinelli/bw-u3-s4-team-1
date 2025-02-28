@@ -6,6 +6,7 @@ import postSlice from "../reducers/postSlice"; // Import del reducer dei post
 import postReducer from "../reducers/newPost";
 import jobReducer from "../reducers/jobSlice"; // Aggiornato per il nuovo nome del file
 
+
 const rootReducer = combineReducers({
   profile: profileReducers,
   multiProfiles: multiProfilesReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   posts: postSlice, // Aggiunto il reducer dei post
   myPost: postReducer,
   jobs: jobReducer, // Aggiunto il reducer dei lavori
+  
 });
 
 const store = configureStore({
