@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Per aggiornare l'URL
-import { Col, Container, Form, Nav, Navbar, NavDropdown, Row, Button } from "react-bootstrap";
+import { Col, Container, Form, Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { BellFill, BriefcaseFill, ChatDotsFill, HouseDoorFill, PeopleFill } from "react-bootstrap-icons";
+import { BellFill, BriefcaseFill, ChatDotsFill, HouseDoorFill, PeopleFill, Search } from "react-bootstrap-icons";
 import CompanyDropdown from "./CompanyDropdown";
 
 function Topbar() {
@@ -46,21 +46,22 @@ function Topbar() {
           <Row>
             <Col xs="auto">
               <Form.Group className="position-relative">
-                <i className="bi bi-search position-absolute top-50 translate-middle-y" style={{ left: "10px" }}></i>
+                {/* <i className="bi bi-search position-absolute top-50 translate-middle-y bg-dark" style={{ left: "10px" }}></i> */}
+                <Search style={{position:"absolute", top:"10px", left:"170px"}}></Search>
                 <Form.Control
                   type="text"
                   placeholder="Cerca lavori..."
                   className="pl-5"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                />
+                  />
               </Form.Group>
             </Col>
-            <Col xs="auto">
+            {/* <Col xs="auto">
               <Button type="submit" className="btn btn-primary">
                 Cerca
               </Button>
-            </Col>
+            </Col> */}
           </Row>
         </Form>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
