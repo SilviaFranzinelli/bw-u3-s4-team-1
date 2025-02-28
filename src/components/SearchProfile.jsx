@@ -77,7 +77,7 @@ const UserSearch = () => {
                         </Link>
                         <Card.Title className="mt-2">
                           <Link className="profileSearch nome-utente" to={`/profile/${user._id}`}>
-                            {user?.name || "Epicode"} {user?.surname || "Student"}
+                            {user.name.slice(0, 12) || "Epicode"} {user.surname?.slice(0, 12) || "Student"}
                           </Link>
                         </Card.Title>
                         <Card.Text className="text-muted" style={{ fontSize: "13px" }}>
