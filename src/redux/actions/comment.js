@@ -1,6 +1,6 @@
 export const FETCH_COMMENTS = "FETCH_COMMENTS";
 export const ADD_COMMENT = "ADD_COMMENT";
-export const DELETE_COMMENT = "DELETE_COMMENT"; // ✅ Aggiunto per eliminare i commenti
+export const DELETE_COMMENT = "DELETE_COMMENT"; 
 
 const API_URL = "https://striveschool-api.herokuapp.com/api/comments/";
 const AUTH_HEADER = {
@@ -9,7 +9,7 @@ const AUTH_HEADER = {
   "Content-Type": "application/json",
 };
 
-// ✅ Fetch dei commenti di un post
+
 export const fetchComments = (postId) => async (dispatch) => {
   try {
     if (!postId) {
@@ -17,14 +17,14 @@ export const fetchComments = (postId) => async (dispatch) => {
       return;
     }
 
-    console.log(`📡 Fetching commenti per il post con ID: ${postId}`); // Debugging
+    console.log(` ${postId}`); 
 
     const response = await fetch(`${API_URL}?elementId=${postId}`, { headers: AUTH_HEADER });
 
     if (!response.ok) throw new Error("Errore nel recupero dei commenti");
 
     const comments = await response.json();
-    console.log("✅ Commenti ricevuti:", comments);
+    console.log(" Commenti ricevuti:", comments);
 
     dispatch({ type: FETCH_COMMENTS, payload: { postId, comments } });
   } catch (error) {
@@ -33,7 +33,7 @@ export const fetchComments = (postId) => async (dispatch) => {
 };
 
 
-// ✅ Aggiunta di un commento
+
 export const addComment = (postId, commentText) => async (dispatch) => {
   try {
     if (!postId) throw new Error("postId non valido");

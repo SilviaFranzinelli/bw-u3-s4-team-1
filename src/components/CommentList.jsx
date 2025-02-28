@@ -12,12 +12,11 @@ const CommentList = ({ postId }) => {
 
   useEffect(() => {
     if (postId) {
-      console.log(`📡 Fetching commenti per il post con ID: ${postId}`);
       dispatch(fetchComments(postId));
     }
   }, [dispatch, postId]);
 
-  console.log("📝 Commenti ricevuti per il post:", postId, comments);
+  console.log("Commenti ricevuti per il post:", postId, comments);
 
   return (
     <ListGroup className="mt-2">
