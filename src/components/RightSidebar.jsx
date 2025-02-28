@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col, Button, Image } from "react-bootstrap";
+import { Container, Row, Col, Button, Image, Spinner } from "react-bootstrap";
 import { CaretDownFill, CaretRight, InfoSquareFill, ThreeDots, SquareFill } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../redux/actions";
@@ -28,16 +28,19 @@ const RightSidebar = () => {
   const [news, setNews] = useState([]);
   const [displayedNews, setDisplayedNews] = useState([]);
   const [index, setIndex] = useState(0);
+  const [loading, setLoading] = useState(true); // State for loading spinner
 
   useEffect(() => {
     dispatch(getProfile());
 
     const loadNews = async () => {
+      setLoading(true); // Show spinner
       const fetchedNews = await fetchNews();
       const randomNews = getRandomNews(fetchedNews, fetchedNews.length);
       setNews(randomNews);
       setDisplayedNews(randomNews.slice(0, 6));
       setIndex(6);
+      setLoading(false); // Hide spinner
     };
 
     loadNews();
@@ -76,13 +79,17 @@ const RightSidebar = () => {
         <h6 className="text-secondary">a cura di LinkedIn notizie</h6>
 
         <Col>
-          {displayedNews.map((item) => (
-            <div key={item._id}>
-              <p style={{ position: "relative", top: "20px" }}>{item.text}</p>
-              <span style={{ fontSize: "10px" }}>{formatDate(item.createdAt)}</span>
-              {/* <span style={{ fontSize: "10px" }}> - {item.updatedAt} lettori</span> */}
-            </div>
-          ))}
+          {loading ? (
+            <Spinner animation="border" variant="success" />
+          ) : (
+            displayedNews.map((item) => (
+              <div key={item._id}>
+                <p style={{ position: "relative", top: "20px" }}>{item.text}</p>
+                <span style={{ fontSize: "10px" }}>{formatDate(item.createdAt)}</span>
+                {/* <span style={{ fontSize: "10px" }}> - {item.updatedAt} lettori</span> */}
+              </div>
+            ))
+          )}
         </Col>
         <Button className="bg-transparent border-0 text-dark p-0 mt-3" onClick={loadMoreNews}>
           Vedi altro <CaretDownFill></CaretDownFill>
