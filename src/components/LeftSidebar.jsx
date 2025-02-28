@@ -20,7 +20,7 @@ const LeftSidebar = () => {
           {profile ? (
             <>
               <img
-                src="https://festivaldellatv.it/wp-content/uploads/2024/05/FTV23_SCOTTI-458x458.png"
+                src={profile.image}
                 alt="Profile"
                 className="rounded-circle border border-white"
                 style={{ width: "50px" }}
