@@ -16,3 +16,21 @@ body {
 .imageProf {
   width: 200px !important ;
 }
+
+.card-custom {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-custom .card-img-top {
+  object-fit: cover;
+  height: 200px; /* Imposta l'altezza dell'immagine */
+}
+
+.card-custom .card-body {
+  flex-grow: 1;
+}
+.buttonHover:hover {
+  background-color: rgb(210, 210, 248) !important;
+}
